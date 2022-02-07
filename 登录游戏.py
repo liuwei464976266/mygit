@@ -83,8 +83,8 @@ for i in range(1):
     Type = 43
     a, b, userName = login(LOGINUIR, Type)
     # b, userName = login1()
-    num = str(50000)
-    data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
+    num = str(400)
+    data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="13")  ## actionType="3"是加钱
     game.AddGold(data)
     webbrowser.open(b, 1)
     time.sleep(2)

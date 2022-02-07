@@ -16,9 +16,9 @@
     <file url="file://$PROJECT_DIR$/play/mangoCount/cfg.ini" charset="GBK" />
     <file url="file://$PROJECT_DIR$/play/mangoCount/read.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/mangoCount/记录重复筛查.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/rawInterface.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/单次旋转（红利）.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/单次旋转（红利）新接口.py" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/play/原始接口.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/接口.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/进红利.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tes.py" charset="UTF-8" />
