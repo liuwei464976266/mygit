@@ -1,0 +1,68 @@
+/AI/deleteGameAIUser {'timestamp': '2022-01-12T09:35:50.073+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/AI/deleteGameAIUser'}
+/company/findGeneralShare {'timestamp': '2022-01-12T09:39:48.785+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/company/findGeneralShare'}
+/company/updateCompanyState {'timestamp': '2022-01-12T09:41:26.066+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/company/updateCompanyState'}
+/company/updateShare {'timestamp': '2022-01-12T09:41:31.167+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/company/updateShare'}
+/feedback/deleteFeedback {'timestamp': '2022-01-12T09:41:36.035+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/feedback/deleteFeedback'}
+/game/addGame {'timestamp': '2022-01-12T09:42:34.691+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/addGame'}
+/game/deleteGameAll {'timestamp': '2022-01-12T09:42:39.605+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/deleteGameAll'}
+/game/getGameById {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/game/getGameTreeTable {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/game/updateAllGameState {'timestamp': '2022-01-12T09:42:58.169+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateAllGameState'}
+/game/updateCompanyGameState {'timestamp': '2022-01-12T09:43:03.488+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateCompanyGameState'}
+/game/updateGame {'timestamp': '2022-01-12T09:43:08.870+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGame'}
+/game/updateGameHot {'timestamp': '2022-01-12T09:43:13.925+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGameHot'}
+/game/updateGameSort {'timestamp': '2022-01-12T09:43:18.854+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGameSort'}
+/game/updateGeneralGameState {'timestamp': '2022-01-12T09:43:24.330+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGeneralGameState'}
+/game/updateStyleGameState {'timestamp': '2022-01-12T09:43:29.712+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateStyleGameState'}
+/gameManage/addGame {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/addLotteryConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/addOdds {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/addOneOdds {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/deleteGameType {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/deleteOneOdds {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/findGameServerInfo {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/findGameType {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/findLotteryConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/findOdds {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/synchDataToRedis {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/updateGameType {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/updateLotteryConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameManage/updateOneOdds {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameRecord/findGameRecordDetails {'timestamp': '2022-01-12T09:44:35.060+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/gameRecord/findGameRecordDetails'}
+/gameRecord/findGameRecordDetails2 {'timestamp': '2022-01-12T09:44:39.678+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/gameRecord/findGameRecordDetails2'}
+/gameRecord/getCurrencyType {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameRecord/getIdAndStyle {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameRecord/getList {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/gameUser/kickPlayer {'timestamp': '2022-01-12T09:50:47.245+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/gameUser/kickPlayer'}
+/gameUser/updateGameUserAvailable {'timestamp': '2022-01-12T09:50:59.039+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/gameUser/updateGameUserAvailable'}
+/goldAction/addExchangeRate {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/goldAction/findUserInfo {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/goldAction/getExchangeRate {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/goldAction/getExchangeRateTask {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/goldAction/manualOperationGold {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/goldAction/refreshExchangeRate {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/goldAction/updateExchangeRateTask {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/index/updatePassword {'timestamp': '2022-01-12T09:52:23.481+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/index/updatePassword'}
+/notice/deleteNotice {'timestamp': '2022-01-12T09:55:56.250+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/notice/deleteNotice'}
+/report/deleteReportBlacks {'timestamp': '2022-01-12T09:56:41.303+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/report/deleteReportBlacks'}
+/room/deleteRoomConfig {'timestamp': '2022-01-12T09:58:43.279+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/room/deleteRoomConfig'}
+/select/findDefaultPointLimit {'timestamp': '2022-01-12T09:59:29.127+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/select/findDefaultPointLimit'}
+/select/findGoldType {'timestamp': '2022-01-12T09:59:52.403+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/select/findGoldType'}
+/select/findRoomXml {'timestamp': '2022-01-12T09:59:56.786+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/select/findRoomXml'}
+/serviceConfig/addCompanyGameConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/serviceConfig/addSmallGameConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/serviceConfig/delSmallGameConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/serviceConfig/deleteCompanyGameConfig {'timestamp': '2022-01-12T10:00:49.280+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/serviceConfig/deleteCompanyGameConfig'}
+/serviceConfig/deleteGameConfig {'timestamp': '2022-01-12T10:00:53.820+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/serviceConfig/deleteGameConfig'}
+/serviceConfig/findSmallGameConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/serviceConfig/manualSettlement {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/serviceConfig/updateAllGameServerInfoStatus {'timestamp': '2022-01-12T10:02:02.257+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/serviceConfig/updateAllGameServerInfoStatus'}
+/serviceConfig/updateCompanyGameConfig {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemRole/addRole {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemRole/deleteRole {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemRole/findBaseMenu {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemRole/findRole {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemRole/updatePermissionAndMenu {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemRole/updateRoleName {'code': 20000, 'status': 403, 'message': 'tips.permissionError', 'data': None, 'token': None}
+/systemUser/deleteUser {'timestamp': '2022-01-12T10:03:55.841+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/systemUser/deleteUser'}
+/systemUser/getRoleTreeTable {'timestamp': '2022-01-12T10:04:06.995+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/systemUser/getRoleTreeTable'}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/cpu内存占用.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/.editorconfig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/HT.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/JAVA胜率.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/LAS Vegas-JAVA.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/LAS Vegas9000.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/LAS Vegas90001.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/MG.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/QM9000.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/QM9000JAVA.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/error.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/liubo.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/mangoCount/cfg.ini" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/play/mangoCount/read.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/mangoCount/记录重复筛查.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/单次旋转（红利）.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/单次旋转（红利）新接口.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/原始接口.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/接口.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/play/进红利.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tes.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/实验.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/实验2.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/实验4.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/登录游戏.py" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

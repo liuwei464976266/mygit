@@ -1,0 +1,686 @@
+{
+  "dialogYes": {
+    "StringValue": "是",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "dialogNo": {
+    "StringValue": "否",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "dialogOk": {
+    "StringValue": "确定",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "dialogCancel": {
+    "StringValue": "取消",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuBalance": {
+    "StringValue": "余额 {0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuLobby": {
+    "StringValue": "游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuBanking": {
+    "StringValue": "银行",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuSettings": {
+    "StringValue": "设置",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuPaytable": {
+    "StringValue": "支付表",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuPracticePlay": {
+    "StringValue": "进行真钱游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "gameMenuResponsibleGaming": {
+    "StringValue": "负责任博彩",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsSettings": {
+    "StringValue": "设置",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsQuickSpin": {
+    "StringValue": "快速旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsSounds": {
+    "StringValue": "声音",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsShowBalance": {
+    "StringValue": "显示余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsShowMiniPaytables": {
+    "StringValue": "显示迷你支付表",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsPoweredBy": {
+    "StringValue": "由 MICROGAMING™ 提供技术支持",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayAutoplay": {
+    "StringValue": "自动游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayMoreOptions": {
+    "StringValue": "+",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplaySpinCountMultiplier": {
+    "StringValue": "{0}x",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayStartAutoplay": {
+    "StringValue": "开始自动游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayStopMessage": {
+    "StringValue": "{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplaySpins": {
+    "StringValue": "旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayWinLimit": {
+    "StringValue": "赢赏限制",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayLossLimit": {
+    "StringValue": "损失限制",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "autoplayUntilStop": {
+    "StringValue": "直至停止",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableHeading1": {
+    "StringValue": "赢得 15 次免费旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableWildSymbolText": {
+    "StringValue": "百搭符号",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableScatterSymbolText": {
+    "StringValue": " 分散符号",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText1a": {
+    "StringValue": "3、4 或 5 个分散符号可激活免费旋转功能。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText1b": {
+    "StringValue": "在功能中，所有赢赏均变为三倍。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText1c": {
+    "StringValue": "免费旋转可被再次触发",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText1d": {
+    "StringValue": "所有的赌注和玩的支付线与启动此功能的游戏一样。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText1e": {
+    "StringValue": "分散符号赢赏乘以下注筹码总数。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText1f": {
+    "StringValue": "分散符号赢赏将添加到支付线赢赏中。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableHeading2": {
+    "StringValue": "任何带百搭符号的赢赏都将翻倍",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText2a": {
+    "StringValue": "每条支付线都只支付最高赢赏。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText2b": {
+    "StringValue": "所有的赢赏支付自左至右，分散符号除外，它支付任何组合",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText2c": {
+    "StringValue": "所有赢赏都将乘以每条支付线的下注筹码数，但分散符号除外。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "paytableText2d": {
+    "StringValue": "百搭符号可代替所有符号，但分散符号除外。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsfreeSpins": {
+    "StringValue": "免费旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsTotalWin": {
+    "StringValue": "总赢赏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsMultiplier": {
+    "StringValue": "乘数",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsMultiplierValue": {
+    "StringValue": "{0}x",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsIntroCongratulations": {
+    "StringValue": "恭喜!",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsIntroYouHaveWon": {
+    "StringValue": "您赢得了",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsIntrofreeSpins": {
+    "StringValue": "免费旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsSummaryCongratulations": {
+    "StringValue": "恭喜!",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsSummaryYouHaveWon": {
+    "StringValue": "您赢得了",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsSummaryfreeSpins": {
+    "StringValue": "次免费旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "freespinsSummaryDuring": {
+    "StringValue": "在免费旋转中",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consolePaylineCount": {
+    "StringValue": "{0}条线",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consolePaylineCountGame": {
+    "StringValue": "{0}线游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleCreditsWithValue": {
+    "StringValue": "筹码: {0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleBetWithValue": {
+    "StringValue": "投注: {0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleBetWithValueNewLine": {
+    "StringValue": "投注:\n{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleWinWithValue": {
+    "StringValue": "赢赏: {0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleBetSize": {
+    "StringValue": "投注大小",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleMaxBet": {
+    "StringValue": "最大投注",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleMax": {
+    "StringValue": "最大值",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "consoleSelectYourBet": {
+    "StringValue": "选择您的投注",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "practiceplayWinRealMoneyMobile": {
+    "StringValue": "赢取\n真\n钱",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "practiceplayWinRealMoney": {
+    "StringValue": "赢取真钱",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "practiceplayPlayForRealMoney": {
+    "StringValue": "您是否想玩现金游戏？",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "bigwinBigWin": {
+    "StringValue": "大奖",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "bigwinSuperBigWin": {
+    "StringValue": "超级大奖",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "bigwinMegaBigMega": {
+    "StringValue": "巨额大奖",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "bigwinStopAutoplay": {
+    "StringValue": "停止自动游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersCongratulations": {
+    "StringValue": "恭喜!",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersYouHave": {
+    "StringValue": "您有",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersFreeGamesCountSingular": {
+    "StringValue": "{0}次免费游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersFreeGamesCountPlural": {
+    "StringValue": "{0}次免费游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersMoreInfoYouHaveSingular": {
+    "StringValue": "您有{0}次免费游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersMoreInfoYouHavePlural": {
+    "StringValue": "您有{0}次免费游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersInfoText1": {
+    "StringValue": "有效日期：{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersBetInfoSingular": {
+    "StringValue": "投注信息：{0}条线，{1}枚硬币@{2}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersBetInfoPlural": {
+    "StringValue": "投注信息：{0}条线，{1}枚硬币@{2}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersBetInfoPluralWays": {
+    "StringValue": "投注信息：{0}条路线，{1}枚硬币 @ {2}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersBetInfoSingularWays": {
+    "StringValue": "投注信息：{0}条路线，{1}枚硬币 @ {2}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersWinningsAddedToBonusBalance": {
+    "StringValue": "赢赏添加到红利余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersWinningsAddedToCashBalance": {
+    "StringValue": "赢赏添加到现金余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersPlayLater": {
+    "StringValue": "稍后再玩",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersPlayNow": {
+    "StringValue": "立即开始游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersNoMoreOffersText": {
+    "StringValue": "目前没有优惠",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersBackToGame": {
+    "StringValue": "返回游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgOffersID": {
+    "StringValue": "ID {0} - {1}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeFreeGamesRemainingSingular": {
+    "StringValue": "您有 {0}次免费游戏 剩余",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeFreeGamesRemainingPlural": {
+    "StringValue": "您有 {0}次免费游戏 剩余",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeFreeGamesRemainingNone": {
+    "StringValue": "您有剩余的免费游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeBetInfoSingular": {
+    "StringValue": "投注信息：{0}条线，{1}枚硬币@{2}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeBetInfoPlural": {
+    "StringValue": "投注信息：{0}条线，{1}枚硬币@{2}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeWinningsAddedToBonusBalance": {
+    "StringValue": "赢赏添加到红利余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeWinningsAddedToCashBalance": {
+    "StringValue": "赢赏添加到现金余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeResumePlay": {
+    "StringValue": "继续游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgResumeInfoText1": {
+    "StringValue": "有效日期：{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgDiscardHeader": {
+    "StringValue": "放弃优惠",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgDiscardInfoTextLine1": {
+    "StringValue": "是否确定现在放弃此优惠？",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgDiscardInfoTextLine2": {
+    "StringValue": "此操作不能撤销。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgDiscardKeepIt": {
+    "StringValue": "保留",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgDiscardDiscard": {
+    "StringValue": "放弃",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgExpiredHeadingText": {
+    "StringValue": "免费游戏会话 ID {0} - {1}已过期",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgExpiredSubText": {
+    "StringValue": "已结束的免费游戏中的赢赏 已添加至您的余额中。",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgExpiredContinue": {
+    "StringValue": "继续",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryHeadingText": {
+    "StringValue": "恭喜",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummarySubHeadingText": {
+    "StringValue": "免费游戏结束",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummarySubHeadingTextNoWin": {
+    "StringValue": "免费游戏结束",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryNoMoreOffersText": {
+    "StringValue": "目前没有优惠",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryWonHeadingText": {
+    "StringValue": "您赢得了",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryWinningsAddedToCashBalance": {
+    "StringValue": "赢赏添加到现金余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryWinningsAddedToBonusBalance": {
+    "StringValue": "赢赏添加到红利余额",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryNextOffer": {
+    "StringValue": "下一优惠",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgSummaryBackToGame": {
+    "StringValue": "返回游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgProgress": {
+    "StringValue": "免费游戏: {0}/{1}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "fgBetValue": {
+    "StringValue": "投注：免费",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryWinHistory": {
+    "StringValue": "赢赏历史记录",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryTop": {
+    "StringValue": "前 {0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryRecent": {
+    "StringValue": "近期",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryYearSingular": {
+    "StringValue": "{0}年前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryYearPlural": {
+    "StringValue": "{0}年前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryMonthSingular": {
+    "StringValue": "{0}个月前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryMonthPlural": {
+    "StringValue": "{0}个月前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryDaySingular": {
+    "StringValue": "{0}天前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryDayPlural": {
+    "StringValue": "{0}天前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryMinuteSingular": {
+    "StringValue": "{0}分钟前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winHistoryMinutePlural": {
+    "StringValue": "{0}分钟前",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWinUptoText": {
+    "StringValue": "最多赢得{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "settingsPoweredBy": {
+    "StringValue": "由 MICROGAMING™ 提供技术支持",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText1": {
+    "StringValue": "3、4或5个分散符号 可赢得15次免费旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText2": {
+    "StringValue": "所有免费旋转赢赏都会乘以三",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText3": {
+    "StringValue": "免费旋转可被再次触发",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText4a": {
+    "StringValue": "所有赌注和所玩的路线 与触发免费旋转的游戏中一样",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText4b": {
+    "StringValue": "分散符号赢赏将乘以下注总金额 ",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText4c": {
+    "StringValue": "符号从左到右排列的组合才能赢赏，而分散符号在任意位置都能赢赏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableFreespinsText4d": {
+    "StringValue": "分散符号赢赏将添加到线路赢赏中",
+    "MatchedLanguageCode": "zh-cn"
+  },
+   "DDpaytableWild": {
+    "StringValue": "百搭符号",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText1": {
+    "StringValue": "尝试再旋转功能",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText2a": {
+    "StringValue": "在每次旋转结束后，可以选择 将一个转轴再旋转任意次数",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText2b": {
+    "StringValue": "并有机会完成赢赏！",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText3": {
+    "StringValue": "在完成某项功能期间再次旋转处于停用状态",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText4a": {
+    "StringValue": "您一次可以再次旋转一个转轴",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText4b": {
+    "StringValue": "每次再旋转都需要收取额外费用",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText4c": {
+    "StringValue": "再次旋转时，只支付与再次旋转转轴相关的赢赏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableRespinText4d": {
+  "StringValue":"更改赌注金额额会停用再旋转",
+  "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWildText1": {
+    "StringValue": "可代替分散符号之外的 所有符号",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWildText2": {
+    "StringValue": "仅出现在转轴2和转轴4上",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWaysWinText1": {
+    "StringValue": "243条赢赏线路",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWaysWinText2": {
+    "StringValue": "什么是线路赢赏？",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWaysWinText3": {
+    "StringValue": "符号从左到右相邻排列的组合 可获得线路赢赏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWaysWinText4a": {
+    "StringValue": "线路赢赏乘以硬币赌注",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDpaytableWaysWinText4b": {
+    "StringValue": "每条线路都仅支付最高赢赏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DD5OfAKIND": {
+    "StringValue": "5个相同符号！",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDscatterMiss": {
+    "StringValue": "3、4或5个分散符号可触发免费旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDachievementUnlockedText1": {
+    "StringValue":"成就",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDachievementUnlockedText2": {
+    "StringValue":"已解锁",
+    "MatchedLanguageCode":"zh-cn"
+  },
+  "DDallAchievementsUnlockedText1": {
+    "StringValue":"所有成就",
+    "MatchedLanguageCode":"zh-cn"
+  },
+  "DDallAchievementsUnlockedText2": {
+    "StringValue":"已解锁",
+    "MatchedLanguageCode":"zh-cn"
+  },
+  "DDrespinBetChangeTitleText1": {
+    "StringValue": "如果更改投注，\n您将失去现有全部再旋转机会",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDrespinBetChangeTitleText3": {
+    "StringValue": "是否确定要继续？",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDrespinBetChangeDialogYes": {
+    "StringValue": "是",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDrespinBetChangeDialogNo": {
+    "StringValue": "否",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDrespinText": {
+    "StringValue": "再旋转",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDrespinOverlayText": {
+    "StringValue": "再次旋转转 轴需要花费",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDbaseIntroTitle": {
+    "StringValue": " 尝试再旋转功能 ",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDbaseIntroRespinText1": {
+    "StringValue": " 下注以单独旋转 \n 您选择的任何转轴 ",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDbaseIntroTapToContinue": {
+    "StringValue": "继续",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "DDfreespinsSummaryDuring": {
+    "StringValue": "在免费旋转中",
+    "MatchedLanguageCode": "zh-cn"
+   },
+    "consoleWaysCountGame": {
+    "StringValue": "{0}条路线游戏",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "creditsWithValueCaps": {
+    "StringValue": "筹码：{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "betWithValueCaps": {
+    "StringValue": "投注：{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "winWithValueCaps": {
+    "StringValue": "赢赏：{0}",
+    "MatchedLanguageCode": "zh-cn"
+  },
+  "RGgameNameText":{
+    "StringValue": "宝石转轴",
+    "MatchedLanguageCode": "zh-cn"
+  }
+}

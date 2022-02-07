@@ -1,0 +1,256 @@
+/*** Copyright (c) Microgaming 2020 ***/
+/*** VERSION: 3.0.0 ***/
+/*** SHA: 3d495edd9c63b6c636013ed3453fc5806d053928 ***/
+
+/* disable selection */
+* {
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* styles css moved to preloader css itself */
+
+body {
+  background: none !important;
+}
+
+#gameCanvas {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+#canvasContainer {
+    position: fixed;
+    left: 0px;
+    margin-top: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#preloader {
+  width:100vw;
+  height:100vh;
+}
+
+/* Preloader Background */
+.preloaderBackground #splash-screen {
+  background-repeat: no-repeat,no-repeat;
+  background-position: center;
+  background-size: contain;
+  top: 17%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 61%;
+  width: 100%;
+  position: absolute;
+}
+
+.animationInClass {
+    -webkit-animation: fadeIn 1s forwards;
+    animation: fadeIn 1s forwards
+}
+
+.animationOutClass {
+    -webkit-animation: fadeOut 1s backwards;
+    animation: fadeOut 1s backwards
+}
+
+/* Loading Bar  */
+.meter-wrap {
+    position: relative;
+    left: 25%;
+    top: 80%;
+    width: 50%;
+    height: auto;
+    opacity: 0;
+    -webkit-animation: fadeIn 1s forwards;
+    animation: fadeIn 1s forwards
+}
+
+.meter-wrap-bg-container,
+.meter-bg-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.meter-bg-container {
+    position: relative;
+}
+
+.meter-bg-container::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: -3px;
+    right: 0;
+    bottom: 0;
+    background: grey;
+    border-radius: 3px;
+    -webkit-animation: gradient-anim 1s ease infinite;
+    -moz-animation: gradient-anim 1s ease infinite;
+    -o-animation: gradient-anim 1s ease infinite;
+    animation: gradient-anim 1s ease infinite;
+}
+
+.meter-wrap-bg-left,
+.meter-wrap-bg-bar,
+.meter-wrap-bg-right {
+    background-color: #282828  !important;
+    border-bottom: 0px solid #FFF;
+    border-top: 0px solid #FFF;
+    position: relative;
+    float: left;
+    height: 100%;
+    top: -100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.meter-wrap-bg-left {
+    border-left: 0px solid #FFF;
+    width: 3px;
+    right: 3px;
+    -moz-border-radius: 12px 0px 0px 12px;
+    -webkit-border-radius: 12px 0px 0px 12px;
+    border-radius: 12px 0px 0px 12px;
+    height: 100%;
+    top: 0px;
+}
+
+.meter-wrap-bg-bar {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.meter-wrap-bg-right {
+    -moz-border-radius: 0px 12px 12px 0px;
+    -webkit-border-radius: 0px 12px 12px 0px;
+    border-radius: 0px 12px 12px 0px;
+    border-right: 0px solid #FFF;
+    width: 3px;
+    margin-right: -3px;
+    height: 100%;
+    top: -6px;
+}
+
+.meter-value {
+    height: 6px;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    width: 0;
+    border-radius: 3px;
+
+}
+
+.meter-bg-left,
+.meter-bg-bar,
+.meter-bg-right {
+    position: relative;
+    float: left;
+    height: 100%;
+    top: -100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.meter-bg-left {
+    width: 3px;
+    right: 3px;
+    height: 100%;
+    top: 0px;
+    -webkit-border-radius: 3px 0px 0px 3px;
+    border-radius: 3px 0px 0px 3px;
+}
+
+.meter-bg-right {
+    width: 3px;
+    height: 100%;
+    margin-right: -3px;
+    -webkit-border-radius: 0px 3px 3px 0px;
+    border-radius: 0px 3px 3px 0px;
+}
+
+.meter-bg-bar {
+    position: relative;
+    float: left;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.meter-text-value {
+    display: none;
+    visibility: hidden;
+}
+
+#preLoaderProgress {
+    width: 1%;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape),
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .meter-text-value {
+    font-size: 2vmax;
+  }
+  
+}
+
+@media only screen and (max-height: 300px) {
+    .disclaimer {
+        bottom: 1% !important;
+    }
+}
+
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
+    }
+}
