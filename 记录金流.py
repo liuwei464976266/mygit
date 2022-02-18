@@ -131,7 +131,7 @@ def timeQueryMangodb(_startTime, _endTime):
 
 
 def Gold_list(startTime, endTime, type):
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"SELECT * FROM [dbo].[Game_GoldActionInfo] WHERE GameType = '{type}' AND CreatDate >'{startTime}' AND CreatDate <'{endTime}'"
     sql1 = f"SELECT SUM(goldNum),currencyType FROM [dbo].[Game_GoldActionInfo] WHERE GameType = '{type}' AND CreatDate > '{startTime}' AND CreatDate < '{endTime}' AND (actionType=2 OR actionType=12) GROUP BY currencyType"
@@ -156,12 +156,13 @@ def DATA(game):
 
     c = [x for x in gold_list if gold_list.count(x) != game_list.count(x) and game_list.count(x) == 0]
     d = [y for y in game_list if gold_list.count(y) < game_list.count(y)]
-    e = [i for i in gold_list if gold_list.count(i) != 1]
+    e = [i for i in game_list if game_list.count(i) != 1]
     # a =[x for x in gold_list if x not in game_list]
     # b =[y for y in game_list if y not in gold_list]
     print('金流输赢', sex1)
-    print(f'记录{len(game_list)}记录去重{len(set(game_list))}', '记录丢失局号', set(c))
+    print(f'记录{len(game_list)}记录去重{len(set(game_list))}', '记录丢失局号', {len(set(c)): set(c)})
     print(f'金流{len(gold_list)}金流去重{len(set(gold_list))}', '记录重复局号', set(d))
+    print('记录重复局号', len(set(e)), set(e))
     return gold_list
 
 
@@ -193,8 +194,8 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-01-20 00:00:00"
-ENDTIME = "2022-01-20 23:59:59"
+STARTTIME = "2022-02-17 00:00:00"
+ENDTIME = "2022-02-17 23:59:59"
 
 
 for x, y in GAMETYPELIST.items():

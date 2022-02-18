@@ -1,5 +1,5 @@
 import requests, random, string, re, webbrowser, time, json
-import logAnalysisUtil
+from play.mangoCount import logAnalysisUtil
 
 
 def login(Url, num):
@@ -78,13 +78,14 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(1):
+for i in range(2):
     style = "241"
     Type = 43
     a, b, userName = login(LOGINUIR, Type)
     # b, userName = login1()
-    num = str(400)
-    data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="13")  ## actionType="3"是加钱
+##    num = str(115396650)
+    num = str(10000)
+    data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
     game.AddGold(data)
     webbrowser.open(b, 1)
     time.sleep(2)

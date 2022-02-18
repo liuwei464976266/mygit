@@ -12,5 +12,14 @@ def girlfriend():
     print(f"wa,终于找到你{name}")
 
 
+def num(a=5, *number, **name):
+    print("a=", a)
+    for i in number:
+        print("元组数据", i)
+    print(number)
+    print(name)
+    for x, y in name.items():
+        print("字典数据", x, y)
 
 
+num(10, 2, 5, 4, 6, 100, jack=23, rose=20)
