@@ -10,7 +10,7 @@ def login(Url, num):
         'Origin': 'http://192.168.10.213:9002',
         'Referer': 'http://192.168.10.213:9002',
         }
-    userName = 'DOOOOXDD'
+    userName = '22dsa'
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
     payload = dict(userName=userName, password='111111', currency=1, style=style, nickName='', sex=0)
     response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
@@ -78,12 +78,13 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(2):
+for i in range(1):
     style = "241"
     Type = 43
     a, b, userName = login(LOGINUIR, Type)
     # b, userName = login1()
-##    num = str(115396650)
+    ## num = str(115396650)
+
     num = str(10000)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
     game.AddGold(data)

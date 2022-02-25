@@ -28,7 +28,7 @@ GAMETYPELIST = {"43": "新版斗牛",
 
 
 def queryMangodb(startTime, endTime, game=0):
-    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.25:27017/OverseasGame?authSource=admin')
+    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     startTimeArray = time.strptime(startTime, "%Y-%m-%d %H:%M:%S")
     monthFirstTime = datetime.datetime(year=startTimeArray.tm_year, month=startTimeArray.tm_mon, day=1, hour=0,
@@ -48,35 +48,63 @@ def queryMangodb(startTime, endTime, game=0):
         return mydoc
 
 
-def Mangodb(STARTTIME):   #验证新版斗牛抢庄
+def Mangodb(STARTTIME):  # 验证新版斗牛抢庄
     timeArray = time.strptime(STARTTIME, "%Y-%m-%d %H:%M:%S")
     timeStamp = int(time.mktime(timeArray)) * 1000
     print(timeStamp)
-    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.25:27017/OverseasGame?authSource=admin')
+    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     mycol = mydb["XBDNLog"]
     my = {"roomInfo.startTime": {"$gt": timeStamp}}
     mydoc = mycol.find(my)
-    x= 0
+    x = 0
     for i in mydoc:
-        x+=1
+        x += 1
         # i = JSONEncoder().encode(i)
-        print(x,JSONEncoder().encode(i))
+        print(x, JSONEncoder().encode(i))
         settlements = i['settlements']
-        playerOperator = i['playerOperator']
-        Banker = []
-        for i in settlements:
-            if i.get('isBanker'):
-                seatNo = i['seatNo']
-        for i in playerOperator[:5]:
-            if i['seatNo'] == seatNo:
-                betGold = i['betGold']
-            if i['betGold'] != 0:
-                Banker.append(i['betGold'])
-        if len(Banker) > 0:
-            if betGold != max(Banker):
-                print('错误了')
+        userlist = i['userlist']
+
+        for o, y in zip(settlements, userlist):
+            uid = o['uid']
+            gold = o['gold']
+            key = y['key']
+            frozenGold = y['frozenGold']
+            if uid == key:
+                if abs(gold) > frozenGold and gold < 0:
+                    print("超出")
+                    return
+            else:
+                print("玩家不匹配")
                 return
+
+
+
+
+
+
+
+
+
+    # for W in mydoc:
+    #     x += 1
+    #     # i = JSONEncoder().encode(i)
+    #     print(x, JSONEncoder().encode(W))
+    #     settlements = W['settlements']
+    #     playerOperator = W['userlist']
+    #
+    #     for W in settlements:
+    #         if W.get('isBanker'):
+    #             seatNo = i['seatNo']
+    #     for i in playerOperator[:5]:
+    #         if i['seatNo'] == seatNo:
+    #             betGold = i['betGold']
+    #         if i['betGold'] != 0:
+    #             Banker.append(i['betGold'])
+    #     if len(Banker) > 0:
+    #         if betGold != max(Banker):
+    #             print('错误了')
+    #             return
 
 
 def timeQueryMangodb(_startTime, _endTime):
@@ -176,7 +204,7 @@ def main(game, startime, endtime):
     # key = b.keys()
 
     # print(111, gamerecord)
-    # print(game)
+    # print(game)21
     # for i in key:
     #     for x in b[i]:
     #         li.append(x['roomInfo']['roundId'])
@@ -184,7 +212,8 @@ def main(game, startime, endtime):
     lis = []
     game = oo.gameReport()
     gamerecord = oo.gameRecord()
-    if 'message' not in gamerecord :
+    if 'message' not in gamerecord:
+        # for J in gamerecord:
         for x in gamerecord['data']:
             lis.append(int(x['roundId']))
     print('后台报表', game)
@@ -194,9 +223,11 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-02-17 00:00:00"
-ENDTIME = "2022-02-17 23:59:59"
+STARTTIME = "2022-02-24 18:00:00"
+ENDTIME = "2022-02-25 09:00:00"
 
+
+# Mangodb(STARTTIME)
 
 for x, y in GAMETYPELIST.items():
     print('\n', '------------------------')
@@ -205,6 +236,4 @@ for x, y in GAMETYPELIST.items():
     li, lis = main(x, STARTTIME, ENDTIME)
     d = [j for j in gold if j not in lis]
     c = [o for o in lis if o not in gold]
-    print(f'纯后台核对有金流无记录{d},无金流有记录{c}')
-
-
+    print(f'纯后台核对有金流无记录', {len(d): d}, '无金流有记录', {len(c): c})

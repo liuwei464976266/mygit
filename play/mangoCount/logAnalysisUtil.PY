@@ -131,22 +131,44 @@ class Record():
     def gameRecord(self):
         sessions = self.sessions
         token = self.getToken()
+        List = []
         headers = {
             'Content-Type': 'application/json;charset=utf-8',
             'token': token
         }
-
         data = {
             "gameType": self.gameType,
             "dateMin": self.startTime,
             "dateMax": self.endTime,
-            "page": 1, "limit": 1000000, "cid": "", "gid": "", "style": "", "roomCfgId": "", "roundId": "",}
+            "page": 1, "limit": 300000, "cid": "", "gid": "", "style": "", "roomCfgId": "", "roundId": "", }
         data = json.dumps(data)
         url = "http://192.168.10.211:8082/gameRecord/findGameRecordList"
         response = sessions.post(url=url, headers=headers, data=data)
         response = response.json()
-        # print(response)
+
+
+        # page = 1
+        # while True:
+        #     data = {
+        #         "gameType": self.gameType,
+        #         "dateMin": self.startTime,
+        #         "dateMax": self.endTime,
+        #         "page": page, "limit": 90, "cid": "", "gid": "", "style": "", "roomCfgId": "", "roundId": "",}
+        #     data = json.dumps(data)
+        #     url = "http://192.168.10.211:8082/gameRecord/findGameRecordList"
+        #     response = sessions.post(url=url, headers=headers, data=data)
+        #     response = response.json()
+        #     List.append(response)
+        #     page += 1
+        #     print(page)
+        #     a = len(response['data'])
+        #     if a < 90:
+        #         break
+        # print(List)
         return response
+
+
+
 
     def AddGold(self, DATA, X=1):
         if X == 0:
@@ -202,7 +224,7 @@ class Des_util():
         static_uid = self.jd.staticUid(tk)
         return static_uid
 def getExchangeRate():
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = "SELECT top 1 rates from dbo.Game_ExchangeRate order by createTime DESC"
     exchangeRate = json.loads(ms.ExecQuery(sql)[0][0])
@@ -233,7 +255,7 @@ def preciseRound(_float, _len = 0):
             return int(round(_float, _len))
         return(round(_float, _len))
 def queryMangodb(startTime,endTime,black_List,noneStartTime = False,noneEndTime = False):
-    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.25:27017/OverseasGame?authSource=admin')
+    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     monthDate = endTime[0:7]
     mycol = mydb["GameUserCount_" + monthDate]
@@ -248,7 +270,7 @@ def queryMangodb(startTime,endTime,black_List,noneStartTime = False,noneEndTime 
     mydoc = mycol.find(myquery)
     return mydoc
 def getBlackUserList():
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"SELECT login.id FROM dbo.Game_UserLoginInfo as login RIGHT JOIN (select userInfo.id from dbo.Game_UserInfoBase as userInfo RIGHT JOIN  dbo.ReportBlacks as black on userInfo.userName = black.userName and userInfo.style =  black.style) as blackId on login.uid = blackId.id WHERE login.style <> 00000"
     black_List = [x[0] for x in ms.ExecQuery(sql)]
@@ -346,7 +368,7 @@ def timeQueryMangodb(_startTime,_endTime,black_List):
 #             mon += 1
 #     return docList
 def getGoldActionRecord(_startTime,_endTime,_actionType,_style):#获取金流记录，参数开始时间，结束时间，actionType元祖，style元祖
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     if "'" not in _startTime:
         _startTime = f"'{_startTime}'"
         _endTime = f"'{_endTime}'"
@@ -367,18 +389,18 @@ def get_static_uid(tk):
     return static_uid
 def get_user_gold(tk):
     static_uid = get_static_uid(tk)
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"SELECT gold,money FROM dbo.Platform_UserInfo where uid = '{static_uid}'"
     gold,money= ms.ExecQuery(sql)[0]
     return gold,money
 def set_user_gold(tk,gold = 0,money = 0):
     static_uid = get_static_uid(tk)
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     sql = f"update dbo.Platform_UserInfo set gold = {gold},money = {money} where uid = '{static_uid}'"
     ms.ExecNonQuery(sql)
 def get_game_ENname(game_type = None):
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     if game_type:
         sql = f'select enName,goldType from Game_Type where gameType = {game_type}'
@@ -389,7 +411,7 @@ def get_game_ENname(game_type = None):
 def get_mangodb_data(startTime,endTime):
     query_small_game_flag = False
     data_list = []
-    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.25:27017/OverseasGame?authSource=admin')
+    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     en_gold_type_name = get_game_ENname()
     for name_gold_type in en_gold_type_name:
@@ -416,13 +438,13 @@ def get_mangodb_data(startTime,endTime):
             data_list.append((gold_type,x,en_name))
     return data_list
 def get_userName_by_id(id):
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f'select userName from Game_UserInfoBase where id = (select uid from Game_UserLoginInfo where id = {id})'
     userName = ms.ExecQuery(sql)[0][0]
     return userName
 def get_id_by_userName(userName):
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"select id from Game_UserLoginInfo where uid = (select id from Game_UserInfoBase where userName = {userName}) and style != '00000'"
     id = ms.ExecQuery(sql)[0][0]
@@ -474,7 +496,7 @@ def timeQueryMangodbByGameType(_startTime,_endTime,black_List,gameType=None):
             mon += 1
     return docList
 def queryMangodbByGameType(startTime,endTime,black_List,noneStartTime = False,noneEndTime = False,gameType = None):
-    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.25:27017/OverseasGame?authSource=admin')
+    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     monthDate = endTime[0:7]
     mycol = mydb["GameUserCount_" + monthDate]

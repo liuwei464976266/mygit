@@ -9,36 +9,43 @@ from decimal import Decimal
 from dateutil.parser import *
 import pymssql
 from logAnalysisUtil import *
-STARTTIME = "2022-01-20 19:00:00"
-ENDTIME = "2022-01-21 08:30:59"
-GAMETYPELIST =  {"34": "百人牛牛",
- "47": "红黑大战",
- "58": "百人骰宝",
- "125": "不朽情缘",
- "126": "花花公子",
- "130": "东方珍兽",
- "131": "比基尼派对",
- "132": "舞龙",
- "133": "宝石转轴",
- "134": "燃烧的欲望",
- "135": "招财鞭炮",
- "136": "幸运富豪",
- "141": "篮球巨星",
- "142": "幸运龙宝贝",
- "144": "迷失拉斯维加斯",
- "145": "爆破银行",
- "146": "野生大熊猫",
- "200": "鱼虾蟹",
- "201": "猜丁壳",
-"39":"十三水",
-"32":"三公",
-"38":"二十一点",
-"41":"德州扑克",
-"143":"奇妙马戏团",
-"202":"俄罗斯轮盘",
-"31":"推筒子",
-"33":"牌九",
-"43":"新版斗牛"
+STARTTIME = "2022-02-24 18:00:00"
+ENDTIME = "2022-02-25 09:00:00"
+
+GAMETYPELIST ={
+     "56":"赌场扑克",
+     "45": "欢乐扎金花",
+     "54": "血战骰宝",
+     "30": "扎金花",
+     "43": "新版斗牛",
+     "34": "百人牛牛",
+     "47": "红黑大战",
+     "58": "百人骰宝",
+     "125": "不朽情缘",
+     "126": "花花公子",
+     "130": "东方珍兽",
+     "131": "比基尼派对",
+     "132": "舞龙",
+     "133": "宝石转轴",
+     "134": "燃烧的欲望",
+     "135": "招财鞭炮",
+     "136": "幸运富豪",
+     "141": "篮球巨星",
+     "142": "幸运龙宝贝",
+     "144": "迷失拉斯维加斯",
+     "145": "爆破银行",
+     "146": "野生大熊猫",
+     "200": "鱼虾蟹",
+     "201": "猜丁壳",
+    "39":"十三水",
+    "32":"三公",
+    "38":"二十一点",
+    "41":"德州扑克",
+    "143":"奇妙马戏团",
+    "202":"俄罗斯轮盘",
+    "31":"推筒子",
+    "33":"牌九",
+
 }
 class MSSQL:
 
@@ -87,7 +94,7 @@ class MSSQL:
 def player():
     print('\n')
     print('玩家报表')
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"select count(*) from dbo.Game_UserInfoBase where regTime > '{STARTTIME}'AND regTime < '{ENDTIME}' and id not in {tuple_black_List}"
     data = ms.ExecQuery(sql)
@@ -178,7 +185,7 @@ def gameData():
         totalProfit = getChangedGold(profit)
         totalBetAmount = getChangedGold(betAmount)
         if totalBetAmount != 0:
-            winRate = round(totalProfit/totalBetAmount * 100,2)
+            winRate = round(totalProfit/totalBetAmount * 100, 2)
         else:
             winRate = 0
         print(GAMETYPELIST[str(key)],value,'胜率:', str(winRate) + "%")
@@ -237,7 +244,7 @@ def roomData():
 def settlementsData():
     users = playerData()
     settlements = {}
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"select top 1 rates from dbo.Game_ExchangeRate ORDER by createTime DESC"
     exchangeRate = json.loads(ms.ExecQuery(sql)[0][0])
@@ -332,12 +339,12 @@ def gameReport():
         playerCount = len(set(value['playerList']))
         totalPlayerCount += playerCount
         value['playerList'] = playerCount
-        print(GAMETYPELIST[str(key)],value)
+        print(GAMETYPELIST[str(key)], value)
     print(f'总计：投注额:{totalBet},玩家输赢:{totalAward},抽水:{totalTax},游戏人次:{totalPlayerCount},游戏次数:{totalGameCount}')
 
 def getGlobalData():
     global black_users_list, exchangeRate,tuple_black_List,black_List
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGame", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
     sql = f"SELECT login.id FROM dbo.Game_UserLoginInfo as login RIGHT JOIN (select userInfo.id from dbo.Game_UserInfoBase as userInfo RIGHT JOIN  dbo.ReportBlacks as black on userInfo.userName = black.userName and userInfo.style =  black.style) as blackId on login.uid = blackId.id WHERE login.style <> 00000"
     black_List = [x[0] for x in ms.ExecQuery(sql)]
