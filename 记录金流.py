@@ -11,19 +11,13 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 
-GAMETYPELIST = {"43": "新版斗牛",
-                "202": "俄罗斯轮盘",
-                "41": "德州扑克",
-                "31": "推筒子",
-                "33": "牌九",
-                "34": "百人牛牛",
-                "47": "红黑大战",
-                "58": "百人骰宝",
-                "200": "鱼虾蟹",
-                "201": "猜丁壳",
-                "39": "十三水",
-                "32": "三公",
-                "38": "二十一点",
+GAMETYPELIST = {
+                "46": "梭哈",
+                "48": "炸金牛",
+                "43": "新版斗牛",
+                "30": "扎金花",
+                "54": "血战骰宝",
+                "56": "赌场扑克",
                 }
 
 
@@ -38,7 +32,7 @@ def queryMangodb(startTime, endTime, game=0):
     monthDate = startTime[0:7]
     mycol = mydb["GameUserCount_" + monthDate]
     slot_mycol = mydb["LotteryRecordModel"]  # 小游戏
-    myquery = {"endTime": {"$gt": parse(startTime), '$lt': parse(endTime)}}
+    myquery = {"startTime": {"$gt": parse(startTime), '$lt': parse(endTime)}}
     slot_myquery = {"createDate": {"$gt": parse(startTime), '$lt': parse(endTime)}}
     if game == 0:
         mydoc = mycol.find(myquery)
@@ -48,34 +42,47 @@ def queryMangodb(startTime, endTime, game=0):
         return mydoc
 
 
-def Mangodb(STARTTIME):  # 验证新版斗牛抢庄
+def Mangodb(STARTTIME, endtime):  # 验证新版斗牛抢庄
     timeArray = time.strptime(STARTTIME, "%Y-%m-%d %H:%M:%S")
+    timeArray1 = time.strptime(endtime, "%Y-%m-%d %H:%M:%S")
     timeStamp = int(time.mktime(timeArray)) * 1000
-    print(timeStamp)
+    timeStamp1 = int(time.mktime(timeArray1)) * 1000
     myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     mycol = mydb["XBDNLog"]
-    my = {"roomInfo.startTime": {"$gt": timeStamp}}
+    my = {"roomInfo.startTime": {"$gt": timeStamp, '$lt': timeStamp1}}
     mydoc = mycol.find(my)
     x = 0
+    valid = 0
     for i in mydoc:
         x += 1
         # i = JSONEncoder().encode(i)
         print(x, JSONEncoder().encode(i))
         settlements = i['settlements']
         userlist = i['userlist']
+        permission = i['permission']
+        player = 0
 
-        for o, y in zip(settlements, userlist):
+        for o, y, p in zip(settlements, userlist, permission):
+            validAmount = o['validAmount']
             uid = o['uid']
             gold = o['gold']
             key = y['key']
             frozenGold = y['frozenGold']
+            if p['style'] != '00000':
+                valid += validAmount
+                print('真实玩家有效投注', valid)
+            player += 1
+            # print("玩家人数", player)
+            if player > 5:
+                print("玩家超出", player)
+                return
             if uid == key:
-                if abs(gold) > frozenGold and gold < 0:
+                if abs(gold) > frozenGold and gold < 0 or player > 5:
                     print("超出")
                     return
             else:
-                print("玩家不匹配")
+                print("玩家不匹配", player)
                 return
 
 
@@ -105,6 +112,69 @@ def Mangodb(STARTTIME):  # 验证新版斗牛抢庄
     #         if betGold != max(Banker):
     #             print('错误了')
     #             return
+
+
+def Mangodb1(STARTTIME, endtime):  # 验证新版斗牛抢庄
+    timeArray = time.strptime(STARTTIME, "%Y-%m-%d %H:%M:%S")
+    timeArray1 = time.strptime(endtime, "%Y-%m-%d %H:%M:%S")
+    timeStamp = int(time.mktime(timeArray)) * 1000
+    timeStamp1 = int(time.mktime(timeArray1)) * 1000
+    myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
+    mydb = myclient['OverseasGame']
+    mycol = mydb["SHLog"]
+    my = {"roomInfo.startTime": {"$gt": timeStamp, '$lt': timeStamp1}}
+    mydoc = mycol.find(my)
+    x = 0
+    valid = 0
+    for i in mydoc:
+        x += 1
+        # i = JSONEncoder().encode(i)
+        # print(x, JSONEncoder().encode(i))
+        settlements = i['settlements']
+        userlist = i['userlist']
+        permission = i['permission']
+        player = 0
+        for o in settlements:
+            cardTypes = o['cardTypes']
+            seatNo = o['seatNo']
+            player += 1
+            if player > 5:
+                print("玩家超出", player)
+                return
+            if cardTypes == 1:
+                print(JSONEncoder().encode(i))
+                for i in userlist:
+                    print(i['nick'])
+
+
+
+
+
+
+
+
+
+
+    # for W in mydoc:
+    #     x += 1
+    #     # i = JSONEncoder().encode(i)
+    #     print(x, JSONEncoder().encode(W))
+    #     settlements = W['settlements']
+    #     playerOperator = W['userlist']
+    #
+    #     for W in settlements:
+    #         if W.get('isBanker'):
+    #             seatNo = i['seatNo']
+    #     for i in playerOperator[:5]:
+    #         if i['seatNo'] == seatNo:
+    #             betGold = i['betGold']
+    #         if i['betGold'] != 0:
+    #             Banker.append(i['betGold'])
+    #     if len(Banker) > 0:
+    #         if betGold != max(Banker):
+    #             print('错误了')
+    #             return
+
 
 
 def timeQueryMangodb(_startTime, _endTime):
@@ -223,11 +293,11 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-02-24 18:00:00"
-ENDTIME = "2022-02-25 09:00:00"
+STARTTIME = "2022-03-10 18:00:00"
+ENDTIME = "2022-03-11 08:59:59"
 
 
-# Mangodb(STARTTIME)
+# Mangodb1(STARTTIME, ENDTIME)
 
 for x, y in GAMETYPELIST.items():
     print('\n', '------------------------')

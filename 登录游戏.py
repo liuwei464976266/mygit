@@ -48,16 +48,15 @@ def addGold(tk, money):
 
 
 def login1():
-    id = 241
+    id = 1
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
-    url = f"http://192.168.10.213:9000/api/login?password=111111&CurrencyType=1&userName={id}_{userName}"
+    url = f"http://192.168.10.213:8000/api/login?password=111111&CurrencyType=1&userName={id}_{userName}"
     response = requests.get(url)
     response = json.loads(response.text)
     response = response.get('url')
     uid_list = re.findall(r'uid=(.*)&changeurl', response)
     uid = uid_list[0]
-
-    return response, '241_' + userName
+    return response, '1_' + userName
 
 
 def To(tk):
@@ -68,10 +67,10 @@ def To(tk):
         print(response.text)
 
 
-x = 3
+x = 0
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
-elif x == 1:
+elif x == 5:
     LOGINUIR = f"http://192.168.10.25:9002"
 else:
     LOGINUIR = f"http://192.168.10.21{x}:9002"
@@ -79,14 +78,16 @@ else:
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
 for i in range(1):
-    style = "241"
-    Type = 43
-    a, b, userName = login(LOGINUIR, Type)
+    style = "1"
+    Type = 0
+    # a = 'x'
     # b, userName = login1()
-    ## num = str(115396650)
-
-    num = str(10000)
+    a, b, userName = login(LOGINUIR, Type)
+    num = str(5000)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data)
-    webbrowser.open(b, 1)
+    game.AddGold(data,0)
+    if Type == 46:
+        webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
+    else:
+        webbrowser.open(b, 1)
     time.sleep(2)

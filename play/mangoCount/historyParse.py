@@ -9,8 +9,8 @@ from decimal import Decimal
 from dateutil.parser import *
 import pymssql
 from logAnalysisUtil import *
-STARTTIME = "2022-02-24 18:00:00"
-ENDTIME = "2022-02-25 09:00:00"
+STARTTIME = "2022-03-15 12:00:00"
+ENDTIME = "2022-03-15 15:59:59"
 
 GAMETYPELIST ={
      "56":"赌场扑克",
@@ -19,6 +19,8 @@ GAMETYPELIST ={
      "30": "扎金花",
      "43": "新版斗牛",
      "34": "百人牛牛",
+     "46": "梭哈",
+     "48": "炸金牛",
      "47": "红黑大战",
      "58": "百人骰宝",
      "125": "不朽情缘",
@@ -94,7 +96,7 @@ class MSSQL:
 def player():
     print('\n')
     print('玩家报表')
-    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV2", port=1433)
     ms.GetConnect()
     sql = f"select count(*) from dbo.Game_UserInfoBase where regTime > '{STARTTIME}'AND regTime < '{ENDTIME}' and id not in {tuple_black_List}"
     data = ms.ExecQuery(sql)

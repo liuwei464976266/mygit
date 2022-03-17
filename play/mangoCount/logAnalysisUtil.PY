@@ -168,8 +168,6 @@ class Record():
         return response
 
 
-
-
     def AddGold(self, DATA, X=1):
         if X == 0:
             token = self.getToken('http://18.167.1.28:8032/login')
@@ -256,7 +254,7 @@ def preciseRound(_float, _len = 0):
         return(round(_float, _len))
 def queryMangodb(startTime,endTime,black_List,noneStartTime = False,noneEndTime = False):
     myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
-    mydb = myclient['OverseasGame']
+    mydb = myclient['OverseasGameV2']
     monthDate = endTime[0:7]
     mycol = mydb["GameUserCount_" + monthDate]
     if noneStartTime and noneEndTime:
