@@ -10,7 +10,7 @@ def login(Url, num):
         'Origin': 'http://192.168.10.213:9002',
         'Referer': 'http://192.168.10.213:9002',
         }
-    userName = '22dsa'
+    userName = 'meishu10'
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
     payload = dict(userName=userName, password='111111', currency=1, style=style, nickName='', sex=0)
     response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
@@ -47,16 +47,20 @@ def addGold(tk, money):
     print(response.text)
 
 
-def login1():
-    id = 1
+def login1(id, Cy, type=0):
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
-    url = f"http://192.168.10.213:8000/api/login?password=111111&CurrencyType=1&userName={id}_{userName}"
+    if type == 0:
+        url = f"http://192.168.10.213:8000/api/login?password=111111&CurrencyType=1&userName={id}_{userName}"
+    else:
+        url = f"http://18.167.1.28:8043/api/login?password=111111&CurrencyType={Cy}&userName={id}_{userName}"
+
     response = requests.get(url)
     response = json.loads(response.text)
     response = response.get('url')
     uid_list = re.findall(r'uid=(.*)&changeurl', response)
     uid = uid_list[0]
-    return response, '1_' + userName
+    userName = str(id)+'_' + userName
+    return response, userName
 
 
 def To(tk):
@@ -67,7 +71,7 @@ def To(tk):
         print(response.text)
 
 
-x = 0
+x = 3
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
 elif x == 5:
@@ -78,14 +82,15 @@ else:
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
 for i in range(1):
-    style = "1"
-    Type = 0
+    style = "241"
+    Type = 46
     # a = 'x'
-    # b, userName = login1()
+    # b, userName = login1(2, 1, 1)
+
     a, b, userName = login(LOGINUIR, Type)
-    num = str(5000)
+    num = str(10000)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data,0)
+    game.AddGold(data, 0)
     if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:

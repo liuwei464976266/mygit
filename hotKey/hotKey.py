@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-
+import sys
+sys.path.append(r'D:\pytest\key')
 import win32con
 import ctypes
 import ctypes.wintypes
@@ -10,9 +11,10 @@ import numpy as np
 import cv2,os
 import win32gui
 import time
-from window import move_window,resize_window,resize_client
+import logAnalysisUtil
+from window import move_window,resize_window, resize_client
 from mouse import leftClick
-import threading,os
+import threading, os, addGold
 GetDC = windll.user32.GetDC
 CreateCompatibleDC = windll.gdi32.CreateCompatibleDC
 GetClientRect = windll.user32.GetClientRect
@@ -29,10 +31,11 @@ windll.user32.SetProcessDPIAware()
 def get_picPath(path = "."):
     picPath_list = []
     for dirpath,dirnames,filenames in os.walk(path):
-        for i in filenames :
+        for i in filenames:
             if i.endswith('.png'):
-                picPath = os.path.join(dirpath,i)
-                picPath_list.append(picPath)
+                pic_path = os.path.join(path,i)
+                picPath_list.append(pic_path)
+        break
     return picPath_list
 def capture(handle: HWND):
     """窗口客户区截图
@@ -67,8 +70,8 @@ def cutPic(handle,x1,y1,x2,y2):
     """
         目标区域截图
     """
-    img = capture(handle,x1,y1,x2,y2)
-    im = img[x1:y1, x2:y2]
+    img = capture(handle)
+    im = img[y1:y2, x1:x2]
     timeStamp = time.time()
     save_path = str(timeStamp) + '.png'
     cv2.imwrite(save_path, im)
@@ -78,11 +81,15 @@ def getPoint(handle,path):#获取图片坐标
     gray = cv2.cvtColor(image, cv2.COLOR_BGRA2GRAY)
     # 读取图片，并保留Alpha通道
     template = cv2.imread(path, cv2.IMREAD_UNCHANGED)
-    # 取出Alpha通道
-    # alpha = template[:, :, 3]
     template = cv2.cvtColor(template, cv2.COLOR_BGRA2GRAY)
-    # 模板匹配，将alpha作为mask，TM_CCORR_NORMED方法的计算结果范围为[0, 1]，越接近1越匹配
+    # 取出Alpha通道
+    # try:
+    #     alpha = template[:, :, 3]
+    #     result = cv2.matchTemplate(gray, template, cv2.TM_CCORR_NORMED, mask=alpha)
+    # except:
     result = cv2.matchTemplate(gray, template, cv2.TM_CCORR_NORMED)
+    # 模板匹配，将alpha作为mask，TM_CCORR_NORMED方法的计算结果范围为[0, 1]，越接近1越匹配
+
     # 获取结果中最大值和最小值以及他们的坐标
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     if 0.99 <= max_val <= 1:
@@ -137,7 +144,7 @@ def get_handles_id(title):
             if title in t:
                 jh.append(h)
     if len(jh) == 0:
-        print("找不到相应的句柄")
+        return []
     else:
         return jh
 def init_windows(handles):
@@ -159,13 +166,12 @@ def init_windows(handles):
                 x = chi * fg
                 y = 540
         else:
-            x = i * 960
-            y = 0
+            x = 0
+            y = i * 540
         x = round(x)
         y = round(y)
         handle = handles[i]
         resize_window(handle, 960, 540)
-        # resize_client(handle, 900, 500)
         move_window(handle,x,y)
 class Hotkey(Thread):
     user32 = ctypes.windll.user32
@@ -261,24 +267,38 @@ class Hotkey(Thread):
             for id in self.hkey_list:
                 self.user32.UnregisterHotKey(None, id)
 
-
 def thread_it(func, *args):
     t = Thread(target=func, args=args)
     t.setDaemon(True)
     t.start()
-
 def play(handle):
     global runningEnble
+    userName_handle = {1377700: '241_s12349', 1376940: '241_s12350', 1902536: '241_s12351', 2818724: '241_s12352'}
     while runningEnble:
-        pic_list = get_picPath()
+        pic_list = get_picPath(r'./fgf')
         for pic in pic_list:
             searchAndClick(handle, pic)
             time.sleep(1 / len(pic_list))
+        special_pic_list = get_picPath(r"./fgf/jx")
+        for pic in special_pic_list:
+            point = getPoint(handle, pic)
+            if point != (-1, -1):
+                x = point[0]
+                y = point[1]
+                userName = userName_handle.get(handle)
+                addGold.userGoldControl(target_gold = 16,userName=userName)
+                time.sleep(2)
+                leftClick(handle, x, y)
+                break
     print(f'{threading.current_thread()} 线程结束')
 def jump(func, hotkey):
     global runningEnble,lock
     self_id = hotkey.get_id(func)
-    handles = get_handles_id("MG Asia - Google Chrome")
+    handles = []
+    handles += get_handles_id("MG Asia - Google Chrome")
+    handles += get_handles_id("Egret - Google Chrome")
+    handles += get_handles_id("Bobao Gaming - Google Chrome")
+    handles += get_handles_id("MG Asia - Google Chrome")
     init_windows(handles)
     lock = threading.Lock()
     runningEnble = True

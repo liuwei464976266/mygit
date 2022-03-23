@@ -64,23 +64,21 @@ def cutPic(handle,x1,y1,x2,y2):
     """
         目标区域截图
     """
-    img = capture(handle,x1,y1,x2,y2)
-    im = img[x1:y1, x2:y2]
+    img = capture(handle)
+    im = img[y1:y2, x1:x2]
     timeStamp = time.time()
     save_path = str(timeStamp) + '.png'
     cv2.imwrite(save_path, im)
 def getPoint(handle,path):#获取图片坐标
     image = capture(handle)
-    # 转为灰度图
     gray = cv2.cvtColor(image, cv2.COLOR_BGRA2GRAY)
     # 读取图片，并保留Alpha通道
-    template = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+    template = cv2.imread('bar8.png', cv2.IMREAD_UNCHANGED)
     # 取出Alpha通道
-    # alpha = template[:, :, 3]
+    alpha = template[:, :, 3]
     template = cv2.cvtColor(template, cv2.COLOR_BGRA2GRAY)
     # 模板匹配，将alpha作为mask，TM_CCORR_NORMED方法的计算结果范围为[0, 1]，越接近1越匹配
-    result = cv2.matchTemplate(gray, template, cv2.TM_CCORR_NORMED)
-    # 获取结果中最大值和最小值以及他们的坐标
+    result = cv2.matchTemplate(gray, template, cv2.TM_CCORR_NORMED, mask=alpha)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     if 0.99 <= max_val <= 1:
         top_left = max_loc
@@ -134,7 +132,7 @@ def get_handles_id(title):
             if title in t:
                 jh.append(h)
     if len(jh) == 0:
-        print("找不到相应的句柄")
+        return []
     else:
         return jh
 def init_windows(handles):
@@ -170,17 +168,23 @@ def play(handle):
         for pic in pic_list:
             searchAndClick(handle,pic)
             time.sleep(1/len(pic_list))
+
+
 if __name__ == "__main__":
-    # handle = windll.user32.Fif(None, "MG Asia - Google Chrome")
-    handles = get_handles_id("MG Asia - Google Chrome")
+    handles = []
+    handles += get_handles_id("MG Asia - Google Chrome")
+    handles += get_handles_id("Egret - Google Chrome")
+    handles += get_handles_id("Bobao Gaming - Google Chrome")
+    handles += get_handles_id("MG Asia - Google Chrome")
     init_windows(handles)
     lock = threading.Lock()
     for handle in handles:
         print(handle)
-        t = threading.Thread(target=play,args=(handle,))
-        t.start()
-        time.sleep(3)
+        cutPic(handle,677,489,724,510)
+    #     t = threading.Thread(target=play,args=(handle,))
+    #     t.start()
+    #     time.sleep(3)
     # resize_window(handle,960,540)
-    # move_window(handle,0,0)
-    # point = getPoint(handle,path = 'test5.png')
-    # print(point)
+    # # move_window(handle,0,0)
+    # # point = getPoint(handle,path = 'test5.png')
+    # # print(point)
