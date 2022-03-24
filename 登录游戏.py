@@ -64,7 +64,7 @@ def login1(id, Cy, type=0):
 
 
 def To(tk):
-    for i in range(1):
+    for i in range(6):
         url = f'http://192.168.10.213:9002/api/GameConfiger/callGame?tk={tk}&timestamp=11546545667'
         headers = {'token': tk}
         response = requests.get(url, headers=headers)
@@ -81,17 +81,17 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(1):
+for i in range(3):
     style = "241"
     Type = 46
     # a = 'x'
     # b, userName = login1(2, 1, 1)
 
     a, b, userName = login(LOGINUIR, Type)
-    num = str(10000)
+    num = str(500)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data, 0)
-    if Type == 46:
+    game.AddGold(data)
+    if Type == 460:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
         webbrowser.open(b, 1)

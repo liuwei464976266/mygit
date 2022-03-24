@@ -78,7 +78,7 @@ class Record():
         self.endTime = endTime
         self.sessions = requests.session()
 
-    def getToken(self, loginUrl = 'http://192.168.10.211:8082/login'):
+    def getToken(self, loginUrl = 'http://192.168.10.213:8082/login'):
         username = self.username
         password = self.password
         loginUrl = loginUrl
@@ -174,7 +174,7 @@ class Record():
             url = "http://18.167.1.28:8032/goldAction/manualOperationGold"
         else:
             token = self.getToken()
-            url = "http://192.168.10.211:8082/goldAction/manualOperationGold"
+            url = "http://192.168.10.213:8082/goldAction/manualOperationGold"
         headers = {
             'Content-Type': 'application/json;charset=utf-8',
             'token': token
