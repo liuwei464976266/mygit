@@ -119,7 +119,7 @@ def getPoint(handle,path):#获取图片坐标
 #         return (-1,-1)
 def searchAndClick(handle,path):
     lock.acquire()
-    point = getPoint(handle,path)
+    point = getPoint(handle, path)
     if point != (-1,-1):
         x = point[0]
         y = point[1]
@@ -276,21 +276,22 @@ def play(handle):
     global runningEnble
     userName_handle = {1377700: '241_s12349', 1376940: '241_s12350', 1902536: '241_s12351', 2818724: '241_s12352'}
     while runningEnble:
-        pic_list = get_picPath(r'./fgf')
+        pic_list = get_picPath(r'D:\pytest\pic')
         for pic in pic_list:
+            print(pic)
             searchAndClick(handle, pic)
             time.sleep(1 / len(pic_list))
-        special_pic_list = get_picPath(r"./fgf/jx")
-        for pic in special_pic_list:
-            point = getPoint(handle, pic)
-            if point != (-1, -1):
-                x = point[0]
-                y = point[1]
-                userName = userName_handle.get(handle)
-                addGold.userGoldControl(target_gold = 16,userName=userName)
-                time.sleep(2)
-                leftClick(handle, x, y)
-                break
+        # special_pic_list = get_picPath(r"D:\pytest\pic")
+        # for pic in special_pic_list:
+        #     point = getPoint(handle, pic)
+        #     if point != (-1, -1):
+        #         x = point[0]
+        #         y = point[1]
+        #         userName = userName_handle.get(handle)
+        #         addGold.userGoldControl(target_gold = 16,userName=userName)
+        #         time.sleep(2)
+        #         leftClick(handle, x, y)
+        #         break
     print(f'{threading.current_thread()} 线程结束')
 def jump(func, hotkey):
     global runningEnble,lock
