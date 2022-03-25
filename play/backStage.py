@@ -1,4 +1,4 @@
-import requests,copy
+import copy
 from logAnalysisUtil import *
 def get_parameters(response,paths):
     path_list = paths.split('/')

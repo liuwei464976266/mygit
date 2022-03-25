@@ -1,5 +1,4 @@
 # encoding:utf-8
-import sys, io
 from logAnalysisUtil import *
 
 

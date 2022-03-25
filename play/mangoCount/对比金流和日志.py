@@ -1,5 +1,4 @@
 #encoding:utf-8
-import datetime
 from logAnalysisUtil import *
 def main():
     startTime = "2021-10-19 00:00:00"

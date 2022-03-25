@@ -1,8 +1,5 @@
 # encoding:utf-8
-import requests, json, threading, time, random, datetime, re, string
-import operator
-from functools import reduce
-from queue import Queue
+import requests, json, threading, time, re, string
 import logAnalysisUtil
 import copy
 import random

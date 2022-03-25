@@ -1,4 +1,4 @@
-import requests, threading, logAnalysisUtil, json
+import requests, threading, logAnalysisUtil
 
 
 def addGold(tk, money):
