@@ -8,7 +8,7 @@ from threading import Thread, activeCount, enumerate
 from ctypes import windll, byref, c_ubyte
 from ctypes.wintypes import RECT, HWND
 import numpy as np
-import cv2,os
+import cv2, os
 import win32gui
 import time
 import logAnalysisUtil
@@ -124,6 +124,7 @@ def searchAndClick(handle,path):
         x = point[0]
         y = point[1]
         leftClick(handle,x,y)
+        print("找到")
     lock.release()
 def get_handles_id(title):
     '''
@@ -276,7 +277,7 @@ def play(handle):
     global runningEnble
     userName_handle = {1377700: '241_s12349', 1376940: '241_s12350', 1902536: '241_s12351', 2818724: '241_s12352'}
     while runningEnble:
-        pic_list = get_picPath(r'D:\pytest\pic')
+        pic_list = get_picPath(r'F:\FeigeDownload\sc')
         for pic in pic_list:
             print(pic)
             searchAndClick(handle, pic)
