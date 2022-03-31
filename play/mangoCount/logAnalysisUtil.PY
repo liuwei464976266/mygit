@@ -78,7 +78,7 @@ class Record():
         self.endTime = endTime
         self.sessions = requests.session()
 
-    def getToken(self, loginUrl = 'http://192.168.10.213:8082/login'):
+    def getToken(self, loginUrl = 'http://192.168.10.211:8082/login'):
         username = self.username
         password = self.password
         loginUrl = loginUrl
@@ -174,7 +174,7 @@ class Record():
             url = "http://18.167.1.28:8032/goldAction/manualOperationGold"
         else:
             token = self.getToken()
-            url = "http://192.168.10.213:8082/goldAction/manualOperationGold"
+            url = "http://192.168.10.211:8082/goldAction/manualOperationGold"
         headers = {
             'Content-Type': 'application/json;charset=utf-8',
             'token': token
@@ -273,6 +273,8 @@ def getBlackUserList():
     sql = f"SELECT login.id FROM dbo.Game_UserLoginInfo as login RIGHT JOIN (select userInfo.id from dbo.Game_UserInfoBase as userInfo RIGHT JOIN  dbo.ReportBlacks as black on userInfo.userName = black.userName and userInfo.style =  black.style) as blackId on login.uid = blackId.id WHERE login.style <> 00000"
     black_List = [x[0] for x in ms.ExecQuery(sql)]
     return black_List
+
+
 def timeQueryMangodb(_startTime,_endTime,black_List):
     _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
     _startTime = datetime.datetime.strftime(_startTime, "%Y-%m-%d %H:%M:%S")

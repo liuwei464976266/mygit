@@ -1,5 +1,7 @@
 import requests, random, string, re, webbrowser, time, json
 from play.mangoCount import logAnalysisUtil
+
+
 def login(Url, num):
     currency = random.randint(1, 2)
     headers = {
@@ -7,7 +9,7 @@ def login(Url, num):
         'Host': LOGINUIR[7:],
         'Origin': 'http://192.168.10.213:9002',
         'Referer': 'http://192.168.10.213:9002',
-        }
+    }
     userName = 'meishu10'
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
     payload = dict(userName=userName, password='111111', currency=1, style=style, nickName='', sex=0)
@@ -57,7 +59,7 @@ def login1(id, Cy, type=0):
     response = response.get('url')
     uid_list = re.findall(r'uid=(.*)&changeurl', response)
     uid = uid_list[0]
-    userName = str(id)+'_' + userName
+    userName = str(id) + '_' + userName
     return response, userName
 
 
@@ -79,14 +81,13 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(6):
+for i in range(4):
     style = "241"
     Type = 46
     # a = 'x'
     # b, userName = login1(2, 1, 1)
-
     a, b, userName = login(LOGINUIR, Type)
-    num = str(500)
+    num = str(5000)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
     game.AddGold(data)
     if Type == 460:
@@ -94,3 +95,4 @@ for i in range(6):
     else:
         webbrowser.open(b, 1)
     time.sleep(2)
+

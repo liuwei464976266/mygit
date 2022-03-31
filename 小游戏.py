@@ -1,31 +1,17 @@
 # encoding:utf-8
-import requests, json, threading, time, random, datetime, string, re
+import requests, json, threading, time, random, datetime, string, re, webbrowser, logging
+from play.mangoCount import logAnalysisUtil
 
 MAXPAYGOLD = 970000
 SCATTER = '11'
 session = requests.session()
 BET = 3000
 pattern = 2
-LOGINUIR = "http://192.168.10.213:9002/user/register"
+LOGINUIR = "http://192.168.10.213:9002"
 INITURL = 'http://192.168.10.213:9008/callInitialize'
 SLOTURL = 'http://192.168.10.213:9008/getSlotData'
 REGISTERURL = 'http://192.168.10.213:9000/registerUser'
 exchange = 'http://192.168.10.213:9002/api/Service/ExchangeInOrOut'
-
-
-def addGold(tk, money):
-    url = 'http://192.168.10.213:9002/api/UserCore/AddPlayerGold'
-
-    headers = {
-        'Content-Type': 'application/json',
-        'Host': '192.168.10.213:9002',
-        'Origin': 'http://192.168.10.213:9002'
-        }
-
-    data = {"tk": tk, "type": 1, "money": money * 100, "timestamp": "1638779262282"}
-    response = requests.post(url, headers=headers, json=data)
-    print('加钱', response.text)
-
 
 def normalPlay(tokenid, gametype, betScore, Type=0):  # 正常玩模式
     url = SLOTURL
@@ -53,11 +39,11 @@ def normalPlay(tokenid, gametype, betScore, Type=0):  # 正常玩模式
             print(response)
             exit(-2)
         else:
-            with open('error.txt', 'a')as f:
-                f.write('\n' + response)
             print("error", response)
-    except:
-        pass
+    except Exception as e:
+        # print(repr(e))
+        # print(e.with_traceback(None))
+        logging.exception(e)
     return None
 
 
@@ -140,34 +126,59 @@ def java_login(username, password, style=5):
             return token
 
 
-def login(Url):
+# def login(Url):
+#     currency = random.randint(1, 2)
+#     headers = {
+#         'Cache-Control': 'max-age=0',
+#         'Connection': 'keep-alive',
+#         'Content-Length': '65',
+#         'Content-Type': 'application/x-www-form-urlencoded',
+#         'Host': '192.168.10.213:9002',
+#         'Origin': 'http://192.168.10.213:9002',
+#         'Referer': 'http://192.168.10.213:9002/index.html?l=zh_CN&type=0',
+#         'Upgrade-Insecure-Requests': '1',
+#
+#         }
+#     # userName = ''.join(random.sample(string.ascii_letters + string.digits, 5))
+#     userName = 'liuw' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
+#     payload = dict(userName=userName, password='111111', currency=currency, style='7', nickName='', sex=0)
+#     # payload = 'userName=li11&password=111111&currency=1&style=1&nickName=&sex=0'
+#     response = requests.post(Url, headers=headers, data=payload, allow_redirects=False)
+#     location = response.headers['location']
+#     # print(location)
+#     if len(location) > 70:
+#         uid_list = re.findall(r'uid=(.*)&changeurl', location)
+#         uid = uid_list[0]
+#         print(userName)
+#     else:
+#         print('账号失败', userName)
+#         return login(LOGINUIR)
+#     return uid, location
+
+
+def login(Url, num, st):
     currency = random.randint(1, 2)
     headers = {
-        'Cache-Control': 'max-age=0',
-        'Connection': 'keep-alive',
-        'Content-Length': '65',
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Host': '192.168.10.213:9002',
+        'Host': LOGINUIR[7:],
         'Origin': 'http://192.168.10.213:9002',
-        'Referer': 'http://192.168.10.213:9002/index.html?l=zh_CN&type=0',
-        'Upgrade-Insecure-Requests': '1',
-
-        }
-    # userName = ''.join(random.sample(string.ascii_letters + string.digits, 5))
-    userName = 'liuw' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
-    payload = dict(userName=userName, password='111111', currency=currency, style='7', nickName='', sex=0)
-    # payload = 'userName=li11&password=111111&currency=1&style=1&nickName=&sex=0'
-    response = requests.post(Url, headers=headers, data=payload, allow_redirects=False)
+        'Referer': 'http://192.168.10.213:9002',
+    }
+    userName = 'meishu10'
+    userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
+    payload = dict(userName=userName, password='111111', currency=1, style=st, nickName='', sex=0)
+    response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
     location = response.headers['location']
-    # print(location)
+    location1 = location.replace(f'h/0', f'h/{num}')
     if len(location) > 70:
         uid_list = re.findall(r'uid=(.*)&changeurl', location)
         uid = uid_list[0]
+        print(uid)
         print(userName)
     else:
-        print('账号失败', userName)
-        return login(LOGINUIR)
-    return uid, location
+        print('账号失败', userName, location1)
+        return login(LOGINUIR, Type, st)
+    return uid, location1, userName
 
 
 def Exchange(tk, gt, type, location):
@@ -186,13 +197,18 @@ def Exchange(tk, gt, type, location):
     return gold, money
 
 
-def main(gt):  # 主函数 程序入口
+def refresh(tk):
+    for i in range(1):
+        url = f'http://192.168.10.213:9002/api/UserCore/callCore?tk={tk}&timestamp=11546545667'
+        headers = {'token': tk}
+        response = requests.get(url, headers=headers)
+        print(response.text)
+
+
+def main(gt, tokenid):  # 主函数 程序入口
     gameType = gt
-    tokenid, location = login(LOGINUIR)
     betScore = BET
     call(tokenid, gameType)
-    requests.get(f'http://192.168.10.212:8080/user/pay?uid={tokenid}&gold=100000000000')
-    # addGold(tokenid, 10000000)
     for i in range(15000):
         # thread.acquire()
         response = normalPlay(tokenid=tokenid, gametype=gameType, betScore=betScore)
@@ -218,13 +234,21 @@ def main(gt):  # 主函数 程序入口
 
 thread = threading.Lock()
 
+games = logAnalysisUtil.Record('admin', '123456', '', '', '')
 if __name__ == '__main__':
     a = []
     game = [130, 131, 132, 133, 134, 135, 136]
-    # game = [134]
     for t in game:
         for i in range(6):
-            c = threading.Thread(target=main, args=(t,))
+            oo = ['241', '242', '243', '245', '246', '247']
+            Type = 0
+            a1, b, userName = login(LOGINUIR, Type, oo[i])
+            num = str(5000)
+            data = dict(userName=userName, style=oo[i], num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
+            games.AddGold(data)
+            refresh(a1)
+            # webbrowser.open(b, 1)
+            c = threading.Thread(target=main, args=(t, a1, ))
             a.append(c)
             c.start()
         for x in a:

@@ -1,5 +1,6 @@
 # coding:utf-8
 from logAnalysisUtil import *
+
 import json
 from bson import ObjectId
 
@@ -293,8 +294,8 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-03-10 18:00:00"
-ENDTIME = "2022-03-11 08:59:59"
+STARTTIME = "2022-03-29 18:00:00"
+ENDTIME = "2022-03-30 08:59:59"
 
 
 # Mangodb1(STARTTIME, ENDTIME)
