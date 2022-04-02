@@ -81,13 +81,13 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(4):
+for i in range(1):
     style = "241"
     Type = 46
     # a = 'x'
     # b, userName = login1(2, 1, 1)
     a, b, userName = login(LOGINUIR, Type)
-    num = str(5000)
+    num = str(-500+2000.54)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
     game.AddGold(data)
     if Type == 460:

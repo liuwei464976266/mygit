@@ -401,8 +401,8 @@ if __name__ == '__main__':
     ms = init_sqlSever()
     session = init_requests()
     checkBackstage = False
-    startTime = "2022-03-30 18:00:00"
-    endTime = "2022-03-31 09:00:00"
+    startTime = "2022-04-01 00:00:00"
+    endTime = "2022-04-01 13:30:00"
     getGlobalData()
     mydoc = timeQueryMangodb(startTime, endTime, black_List)
     token = loginBackStage(session)
