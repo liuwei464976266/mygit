@@ -40,13 +40,15 @@ def add_gold(userName,target_gold,style = '1',actionType = '3'):
     print(url)
     record = logAnalysisUtil.Record('admin', '123456', '', '', '')
     return record.AddGold(data, url=url,style = style)
+
+
 def main():
     userNames = {132316: '241_s12466'}
     target_gold = 500
-    if isinstance(userNames,dict):
+    if isinstance(userNames, dict):
         for userName in userNames.values():
             userGoldControl(userName=userName, target_gold = target_gold,style=STYLE)
-    elif isinstance(userNames,lsit):
+    elif isinstance(userNames, lsit):
         for userName in userNames:
             userGoldControl(userName=userName, target_gold = target_gold,style=STYLE)
 if __name__ == '__main__':

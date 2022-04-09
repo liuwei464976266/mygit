@@ -263,7 +263,6 @@ def play(handle):
     userName_dic = eval(USERNAME_HANLE_DIC)
     userName_handle = userName_dic
     while runningEnble:
-
         for pic in pic_list:
             point = getPoint(handle, pic)
             if point != (-1, -1):
@@ -271,18 +270,18 @@ def play(handle):
                 time.sleep(1)
                 if pic[0] == r'b_jz.png':
                     leftClick(handle, 636, 497)
-        # for pic in special_pic_list:
-        #     point = getPoint(handle, pic)
-        #     if point != (-1, -1):
-        #         x = point[0]
-        #         y = point[1]
-        #         userName = userName_handle.get(handle)
-        #         result = addGold.userGoldControl(target_gold = 16,userName=userName)
-        #         leftClick(handle, x, y)
-        #         time.sleep(1)
-        #         if pic[0] == 'f_qd.png':
-        #             leftClick(handle,172,103)
-        #         break
+        for pic in special_pic_list:
+            point = getPoint(handle, pic)
+            if point != (-1, -1):
+                x = point[0]
+                y = point[1]
+                userName = userName_handle.get(handle)
+                result = addGold.userGoldControl(target_gold = 20, userName=userName)
+                leftClick(handle, x, y)
+                time.sleep(1)
+                if pic[0] == 'f_qd.png':
+                    leftClick(handle,138, 155)
+                break
     print(f'{threading.current_thread()} 线程结束')
 def jump(func, hotkey):
     global runningEnble,lock,pic_list,special_pic_list
@@ -318,7 +317,6 @@ def main():
     start_id = hotkey.reg(key=(win32con.MOD_ALT, win32con.VK_HOME), func=jump, args=(jump, hotkey))  # alt home键 开始
     hotkey.reg(key=(0, win32con.VK_END), func=stop_jump, args=(start_id, hotkey))  # alt end键 结束
     hotkey.start()  # 启动热键主线程
-
     print(f"当前总线程数量:{activeCount()}")
     print('当前线程列表:', enumerate())
     print('热键注册初始化完毕，尝试按组合键alt+Home 或者单键END看效果')

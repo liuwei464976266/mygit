@@ -1,5 +1,6 @@
 import requests, random, string, re, webbrowser, time, json
 from play.mangoCount import logAnalysisUtil
+# from Hot_key import hotKey
 
 
 def login(Url, num):
@@ -10,7 +11,7 @@ def login(Url, num):
         'Origin': 'http://192.168.10.213:9002',
         'Referer': 'http://192.168.10.213:9002',
     }
-    userName = 'meishu10'
+    # userName = '我爱我家我爱我家'
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
     payload = dict(userName=userName, password='111111', currency=1, style=style, nickName='', sex=0)
     response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
@@ -81,18 +82,20 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(1):
+for i in range(4):
     style = "241"
-    Type = 46
+    Type = 0
     # a = 'x'
     # b, userName = login1(2, 1, 1)
     a, b, userName = login(LOGINUIR, Type)
-    num = str(-500+2000.54)
+    num = str(-500+200564.37)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data)
-    if Type == 460:
+    # game.AddGold(data)
+    if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
         webbrowser.open(b, 1)
+
     time.sleep(2)
+
 

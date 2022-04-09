@@ -9,7 +9,7 @@ BET = 3000
 pattern = 2
 LOGINUIR = "http://192.168.10.213:9002"
 INITURL = 'http://192.168.10.213:9008/callInitialize'
-SLOTURL = 'http://192.168.10.213:9008/getSlotData'
+SLOTURL = 'http://192.168.10.25:9008/getSlotData'
 REGISTERURL = 'http://192.168.10.213:9000/registerUser'
 exchange = 'http://192.168.10.213:9002/api/Service/ExchangeInOrOut'
 
@@ -239,7 +239,7 @@ if __name__ == '__main__':
     a = []
     game = [130, 131, 132, 133, 134, 135, 136]
     for t in game:
-        for i in range(6):
+        for i in range(1):
             oo = ['241', '242', '243', '245', '246', '247']
             Type = 0
             a1, b, userName = login(LOGINUIR, Type, oo[i])
@@ -248,7 +248,7 @@ if __name__ == '__main__':
             games.AddGold(data)
             refresh(a1)
             # webbrowser.open(b, 1)
-            c = threading.Thread(target=main, args=(t, a1, ))
+            c = threading.Thread(target=main, args=(t, a1))
             a.append(c)
             c.start()
         for x in a:

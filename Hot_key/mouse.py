@@ -100,7 +100,7 @@ def leftClick(handle,x,y):
     # move_to(handle, x, y)
     # time.sleep(1)
     left_down(handle, x, y)
-    time.sleep(0.1)
+    time.sleep(0.2)
     left_up(handle, x, y)
 if __name__ == "__main__":
     # 需要和目标窗口同一权限，游戏窗口通常是管理员权限

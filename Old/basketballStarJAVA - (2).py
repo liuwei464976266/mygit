@@ -12,9 +12,9 @@ session = requests.session()
 GT = 141
 LINESNUMBER = 50
 BET = 50
-INITURL = 'http://192.168.10.213:9002/callInitialize'
-SLOTURL = 'http://192.168.10.213:9002/getSlotData'
-REGISTERURL = 'http://192.168.10.213:8002/registerUser'
+INITURL = 'http://192.168.10.213:9008/callInitialize'
+SLOTURL = 'http://192.168.10.25:9008/getSlotData'
+REGISTERURL = 'http://192.168.10.213:9000/registerUser'
 def filterAdpoints(adpoints,points):
     filtedAdpoints = {}
     myadpoints = copy.deepcopy(adpoints)  # 拷贝一个 myadpoints 避免后续直接修改adpoints对象
@@ -609,7 +609,7 @@ def call(tk,gametype):
         'Content-Type': 'application/json'
         }
     data = json.dumps(data)
-    print("初始化",data,headers)
+    print("初始化", data, headers)
     response = requests.post(url=url, data=data, headers=headers)
     response = response.json()
     print("初始化",response)
@@ -624,7 +624,7 @@ def registerJava():
     password = "123456"
     if username:
         print(username,password)
-        return username,password
+        return username, password
     return None
 def register():
     url = "http://192.168.10.25:9000/registerUser"
@@ -766,9 +766,10 @@ def java_login(username,password,style = 5):
 #         return False
 #     return current_gold
 def main():#主函数 程序入口
-    username,password = registerJava()
-    print("this",username,password)
-    tk = java_login(username, password)
+    # username,password = registerJava()
+    # print("this", username, password)
+    # tk = java_login(username, password)
+    tk = '17ADD64C335AC0DA1E8498BE3DD248045CC9'
     tokenid = tk
     gameType = GT
     betScore = BET

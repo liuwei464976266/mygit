@@ -72,8 +72,8 @@ def playerData():
     print('玩家数据')
     users = {}
     for x in mydoc:
-        if x.get("gameType") != 32:
-            continue
+        # if x.get("gameType") != 32:
+        #     continue
         for key, value in x.items():
             if key == 'userName':
                 value = value + str(x['currencyType']) + str(x['style'])
@@ -401,8 +401,8 @@ if __name__ == '__main__':
     ms = init_sqlSever()
     session = init_requests()
     checkBackstage = False
-    startTime = "2022-04-01 00:00:00"
-    endTime = "2022-04-01 13:30:00"
+    startTime = "2022-04-07 18:00:00"
+    endTime = "2022-04-08 09:00:00"
     getGlobalData()
     mydoc = timeQueryMangodb(startTime, endTime, black_List)
     token = loginBackStage(session)

@@ -42,6 +42,7 @@ def login(loginUrl,style,userName,gameType = 0,currencyType = 1,language = 1,mon
         }
         response = requests.get(loginUrl,data)
         response = response.json()
+        print(data)
         print(response)
         if response.get('code') == 1:
             url = response.get('url')
@@ -121,6 +122,8 @@ def main(userName = None):
     userName = style + "_" + NICK_FIRST_NAME + userName_num
     login(loginUrl, style, userName,url_type = URL_TYPE,currencyType = CURRENCY_TYPE,money=MONEY
           )
+
+
 if __name__ == '__main__':
     userName_handle = {}
     for i in range(1):
