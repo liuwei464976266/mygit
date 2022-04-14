@@ -66,7 +66,7 @@ def login(loginUrl,style,userName,gameType = 0,currencyType = 1,language = 1,mon
     handles += get_handles_id("Bobao Gaming - Google Chrome")
     handles += get_handles_id("MG Asia - Google Chrome")
     handle = handles[0]
-    userName_handle.update({handle:userName})
+    userName_handle.update({handle: userName})
 
 def getTokenByUrl(url):
     o = urlparse(url)
@@ -126,6 +126,6 @@ def main(userName = None):
 
 if __name__ == '__main__':
     userName_handle = {}
-    for i in range(1):
+    for i in range(4):
         main()
     print(userName_handle)

@@ -122,11 +122,12 @@ def Mangodb1(STARTTIME, endtime):  # 验证新版斗牛抢庄
     timeStamp1 = int(time.mktime(timeArray1)) * 1000
     myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
-    mycol = mydb["SHLog"]
+    mycol = mydb["ZJNLog"]
     my = {"roomInfo.startTime": {"$gt": timeStamp, '$lt': timeStamp1}}
     mydoc = mycol.find(my)
     x = 0
     valid = 0
+
     for i in mydoc:
         x += 1
         # i = JSONEncoder().encode(i)
@@ -134,6 +135,7 @@ def Mangodb1(STARTTIME, endtime):  # 验证新版斗牛抢庄
         settlements = i['settlements']
         userlist = i['userlist']
         permission = i['permission']
+        roomInfo = i["roomInfo"]
         player = 0
         for o in settlements:
             cardTypes = o['cardTypes']
@@ -142,8 +144,11 @@ def Mangodb1(STARTTIME, endtime):  # 验证新版斗牛抢庄
             if player > 5:
                 print("玩家超出", player)
                 return
-            if cardTypes == 1:
-                print(JSONEncoder().encode(i))
+            if cardTypes == 15:
+                timeStamps = int(roomInfo['startTime'])/1000
+                timeArray = time.localtime(timeStamps)
+                otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+                print(cardTypes, otherStyleTime, JSONEncoder().encode(i))
                 for i in userlist:
                     print(i['nick'])
 
@@ -294,17 +299,17 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-03-29 18:00:00"
-ENDTIME = "2022-03-30 08:59:59"
+STARTTIME = "2022-04-11 18:00:00"
+ENDTIME = "2022-04-12 08:59:59"
 
 
-# Mangodb1(STARTTIME, ENDTIME)
+Mangodb1(STARTTIME, ENDTIME)
 
-for x, y in GAMETYPELIST.items():
-    print('\n', '------------------------')
-    print('\n', y)
-    gold = DATA(int(x))
-    li, lis = main(x, STARTTIME, ENDTIME)
-    d = [j for j in gold if j not in lis]
-    c = [o for o in lis if o not in gold]
-    print(f'纯后台核对有金流无记录', {len(d): d}, '无金流有记录', {len(c): c})
+# for x, y in GAMETYPELIST.items():
+#     print('\n', '------------------------')
+#     print('\n', y)
+#     gold = DATA(int(x))
+#     li, lis = main(x, STARTTIME, ENDTIME)
+#     d = [j for j in gold if j not in lis]
+#     c = [o for o in lis if o not in gold]
+#     print(f'纯后台核对有金流无记录', {len(d): d}, '无金流有记录', {len(c): c})

@@ -72,7 +72,7 @@ def To(tk):
         print(response.text)
 
 
-x = 3
+x = 0
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
 elif x == 5:
@@ -82,20 +82,19 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(4):
-    style = "241"
+for i in range(2):
+    style = "1"
     Type = 0
     # a = 'x'
     # b, userName = login1(2, 1, 1)
     a, b, userName = login(LOGINUIR, Type)
-    num = str(-500+200564.37)
+    num = str(-500+2000.95)
     data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
-    # game.AddGold(data)
+    game.AddGold(data, 0)
     if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
         webbrowser.open(b, 1)
-
     time.sleep(2)
 
 
