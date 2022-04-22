@@ -1,14 +1,32 @@
 #!/usr/bin/python3
 # encoding:utf-8
 import flask, json
+from logAnalysisUtil import MSSQL
 
 # 实例化api，把当前这个python文件当作一个服务，__name__代表当前这个python文件
 api = flask.Flask(__name__)
 
 
+def updateGold(userName, money):
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
+    ms.GetConnect()
+    money = int(money)
+    sql = f"UPDATE [dbo].[Game_UserInfo] SET [money] = {money*1000000} WHERE [uid] = (SELECT id FROM dbo.Game_UserInfoBase WHERE userName = '{userName}')"
+    ms.ExecNonQuery(sql)
+
+
 # 'index'是接口路径，methods不写，默认get请求
-@api.route('/index', methods=['get'])
+@api.route('/update_gold', methods=['get'])
 # get方式访问
+def update_gold():
+    username = flask.request.values.get('username')
+    money = flask.request.values.get('money')
+    updateGold(userName=username, money=money)
+    ren = {'msg': '成功操作货币', 'msg_code': 200}
+    # json.dumps 序列化时对中文默认使用的ascii编码.想输出中文需要指定ensure_ascii=False
+    return json.dumps(ren, ensure_ascii=False)
+
+
 def index():
     ren = {'msg': '成功访问首页', 'msg_code': 200}
     # json.dumps 序列化时对中文默认使用的ascii编码.想输出中文需要指定ensure_ascii=False
@@ -16,7 +34,7 @@ def index():
 
 
 # post入参访问方式一：url格式参数
-@api.route('/article', methods=['post'])
+@api.route('/article', methods=['get'])
 def article():
     # url格式参数?id=12589&name='lishi'
     id = flask.request.args.get('id')
@@ -49,6 +67,6 @@ def login():
 
 
 if __name__ == '__main__':
-    api.run(port=8765, debug=True, host='127.0.0.1')  # 启动服务
+    api.run(port=8888, debug=True, host='192.168.10.22')  # 启动服务
     # debug=True,改了代码后，不用重启，它会自动重启
     # 'host='127.0.0.1'别IP访问地址

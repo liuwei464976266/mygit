@@ -299,8 +299,8 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-04-11 18:00:00"
-ENDTIME = "2022-04-12 08:59:59"
+STARTTIME = "2022-04-20 18:00:00"
+ENDTIME = "2022-04-21 08:59:59"
 
 
 Mangodb1(STARTTIME, ENDTIME)

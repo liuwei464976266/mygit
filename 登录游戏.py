@@ -1,7 +1,7 @@
-import requests, random, string, re, webbrowser, time, json
+import requests, random, string, re, webbrowser, time, json, win32gui
 from play.mangoCount import logAnalysisUtil
 # from Hot_key import hotKey
-
+MSSQL = logAnalysisUtil.MSSQL
 
 def login(Url, num):
     currency = random.randint(1, 2)
@@ -21,12 +21,31 @@ def login(Url, num):
         uid_list = re.findall(r'uid=(.*)&changeurl', location)
         uid = uid_list[0]
         print(uid)
-        print(userName)
     else:
         print('账号失败', userName, location1)
         return login(LOGINUIR, Type)
     return uid, location1, userName
 
+def get_handles_id(title):
+    '''
+    根据标题找句柄
+    :param title: 标题
+    :return:返回句柄所对应的ID
+    '''
+    jh = []
+    hwnd_title = dict()
+    def get_all_hwnd(hwnd, mouse):
+        if win32gui.IsWindow(hwnd) and win32gui.IsWindowEnabled(hwnd) and win32gui.IsWindowVisible(hwnd):
+            hwnd_title.update({hwnd: win32gui.GetWindowText(hwnd)})
+    win32gui.EnumWindows(get_all_hwnd, 0)
+    for h, t in hwnd_title.items():
+        if t != "":
+            if title in t:
+                jh.append(h)
+    if len(jh) == 0:
+        return []
+    else:
+        return jh
 
 def addGold(tk, money):
     url = 'http://192.168.10.213:9002/api/UserCore/AddPlayerGold'
@@ -72,7 +91,14 @@ def To(tk):
         print(response.text)
 
 
-x = 0
+def updateGold(userName,money):
+    ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
+    ms.GetConnect()
+    sql = f"UPDATE [dbo].[Game_UserInfo] SET [money] = {money*1000000} WHERE [uid] = (SELECT id FROM dbo.Game_UserInfoBase WHERE userName = '{userName}')"
+    ms.ExecNonQuery(sql)
+
+x = 3
+
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
 elif x == 5:
@@ -82,19 +108,28 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(2):
-    style = "1"
-    Type = 0
-    # a = 'x'
-    # b, userName = login1(2, 1, 1)
+for i in range(1):
+    nick = {}
+    style = "241"
+    Type = 48
     a, b, userName = login(LOGINUIR, Type)
-    num = str(-500+2000.95)
-    data = dict(userName=userName, style=style, num=num, moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data, 0)
+    num = 3000
+    updateGold(userName, num)
+    # data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
+    # game.AddGold(data, 0)
     if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
         webbrowser.open(b, 1)
-    time.sleep(2)
+    time.sleep(1)
+    handles = []
+    handles += get_handles_id("MG Asia - Google Chrome")
+    handles += get_handles_id("Egret - Google Chrome")
+    handles += get_handles_id("Bobao Gaming - Google Chrome")
+    handles += get_handles_id("MG Asia - Google Chrome")
+    handle = handles[0]
+    nick.update({handle: userName})
+    print(nick)
+
 
 

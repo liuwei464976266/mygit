@@ -37,12 +37,15 @@ GAMETYPELIST =  {"34": "百人牛牛",
 "31":"推筒子",
 "33":'牌九',
 "30":'扎金花',
+"36":'通比牛牛',
+"37":'极速扎金花',
 "43":'新版斗牛',
 "54":'血战骰宝',
 "45":'欢乐炸金花',
 "56":'抢庄牛牛',
 "46":"港式梭哈",
-"48":"炸金牛"
+"48":"炸金牛",
+"59":"未知",
 }
 def player():
     print('\n')
@@ -401,8 +404,8 @@ if __name__ == '__main__':
     ms = init_sqlSever()
     session = init_requests()
     checkBackstage = False
-    startTime = "2022-04-07 18:00:00"
-    endTime = "2022-04-08 09:00:00"
+    startTime = "2022-04-20 18:00:00"
+    endTime = "2022-04-21 09:00:00"
     getGlobalData()
     mydoc = timeQueryMangodb(startTime, endTime, black_List)
     token = loginBackStage(session)

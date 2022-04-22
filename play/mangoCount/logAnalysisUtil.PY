@@ -175,6 +175,7 @@ class Record():
         else:
             token = self.getToken()
             url = "http://192.168.10.211:8082/goldAction/manualOperationGold"
+
         headers = {
             'Content-Type': 'application/json;charset=utf-8',
             'token': token
