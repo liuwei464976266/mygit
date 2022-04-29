@@ -10,4 +10,5 @@ def updateGold(userName,money):
 # updateGold('liu863rWe', 30000)
 
 
-print(10000.95*100)
+for i in range(4):
+    print(i%4)

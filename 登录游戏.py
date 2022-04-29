@@ -20,7 +20,7 @@ def login(Url, num):
     if len(location) > 70:
         uid_list = re.findall(r'uid=(.*)&changeurl', location)
         uid = uid_list[0]
-        print(uid)
+        print(userName, uid)
     else:
         print('账号失败', userName, location1)
         return login(LOGINUIR, Type)
@@ -97,7 +97,7 @@ def updateGold(userName,money):
     sql = f"UPDATE [dbo].[Game_UserInfo] SET [money] = {money*1000000} WHERE [uid] = (SELECT id FROM dbo.Game_UserInfoBase WHERE userName = '{userName}')"
     ms.ExecNonQuery(sql)
 
-x = 3
+x = 0
 
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
@@ -108,28 +108,29 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(1):
+for i in range(3):
     nick = {}
-    style = "241"
-    Type = 48
+    style = "2"
+    Type = 0
+    c = i % 2+1
     a, b, userName = login(LOGINUIR, Type)
-    num = 3000
-    updateGold(userName, num)
-    # data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
-    # game.AddGold(data, 0)
+    num = 2000
+    # updateGold(userName, num)
+    data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
+    game.AddGold(data, 0)
     if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
         webbrowser.open(b, 1)
     time.sleep(1)
-    handles = []
-    handles += get_handles_id("MG Asia - Google Chrome")
-    handles += get_handles_id("Egret - Google Chrome")
-    handles += get_handles_id("Bobao Gaming - Google Chrome")
-    handles += get_handles_id("MG Asia - Google Chrome")
-    handle = handles[0]
-    nick.update({handle: userName})
-    print(nick)
+##    handles = []
+##    handles += get_handles_id("MG Asia - Google Chrome")
+##    handles += get_handles_id("Egret - Google Chrome")
+##    handles += get_handles_id("Bobao Gaming - Google Chrome")
+##    handles += get_handles_id("MG Asia - Google Chrome")
+##    handle = handles[0]
+##    nick.update({handle: userName})
+##    print(nick)
 
 
 
