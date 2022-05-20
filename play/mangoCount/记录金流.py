@@ -1,6 +1,5 @@
 # coding:utf-8
-from logAnalysisUtil import *
-
+from play.mangoCount.logAnalysisUtil import *
 import json
 from bson import ObjectId
 
@@ -13,16 +12,48 @@ class JSONEncoder(json.JSONEncoder):
 
 
 GAMETYPELIST = {
-                "46": "梭哈",
-                "48": "炸金牛",
-                "43": "新版斗牛",
-                "30": "扎金花",
-                "54": "血战骰宝",
-                "56": "赌场扑克",
-                }
+    # 2: "抢庄牛牛",
+
+    30: "炸金花",
+    31: "推筒子",
+    32: "三公",
+    33: "牌九",
+    34: "百人牛牛",
+    36: "通比牛牛",
+    37: "极速炸金花",
+    38: "二十一点",
+    39: "十三水",
+    41: "德州扑克",
+    43: "新版斗牛",
+    45: "欢乐炸金花",
+    46: "港式梭哈",
+    47: "红黑大战",
+    48: "炸金牛",
+    54: "血战骰宝",
+    56: "赌场扑克",
+    58: "百人骰宝",
+    # 59: "百得之",
+    125: "不朽情缘",
+    126: "花花公子",
+    130: "东方珍兽",
+    131: "比基尼派对",
+    132: "舞龙",
+    133: "宝石转轴",
+    134: "燃烧的欲望",
+    135: "招财鞭炮",
+    136: "幸运富豪",
+    141: "篮球巨星",
+    142: "幸运龙宝贝",
+    143: "奇妙马戏团",
+    144: "迷失拉斯维加斯",
+    145: "爆破银行",
+    200: "鱼虾蟹",
+    201: "猜丁壳",
+    202: "俄罗斯轮盘"
+}
 
 
-def queryMangodb(startTime, endTime, game=0):
+def queryMangodb(startTime, endTime):
     myclient = pymongo.MongoClient('mongodb://admin:admin@192.168.10.37:27017/OverseasGame?authSource=admin')
     mydb = myclient['OverseasGame']
     startTimeArray = time.strptime(startTime, "%Y-%m-%d %H:%M:%S")
@@ -35,12 +66,10 @@ def queryMangodb(startTime, endTime, game=0):
     slot_mycol = mydb["LotteryRecordModel"]  # 小游戏
     myquery = {"startTime": {"$gt": parse(startTime), '$lt': parse(endTime)}}
     slot_myquery = {"createDate": {"$gt": parse(startTime), '$lt': parse(endTime)}}
-    if game == 0:
-        mydoc = mycol.find(myquery)
-        return mydoc
-    else:
-        mydoc = slot_mycol.find(slot_myquery)
-        return mydoc
+    mydoc = mycol.find(myquery)
+    return mydoc
+    # mydoc = slot_mycol.find(slot_myquery)
+    # return mydoc
 
 
 def Mangodb(STARTTIME, endtime):  # 验证新版斗牛抢庄
@@ -299,17 +328,17 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-04-20 18:00:00"
-ENDTIME = "2022-04-21 08:59:59"
+STARTTIME = "2022-05-19 00:00:00"
+ENDTIME = "2022-05-19 23:59:59"
 
 
-Mangodb1(STARTTIME, ENDTIME)
+# Mangodb1(STARTTIME, ENDTIME)
 
-# for x, y in GAMETYPELIST.items():
-#     print('\n', '------------------------')
-#     print('\n', y)
-#     gold = DATA(int(x))
-#     li, lis = main(x, STARTTIME, ENDTIME)
-#     d = [j for j in gold if j not in lis]
-#     c = [o for o in lis if o not in gold]
-#     print(f'纯后台核对有金流无记录', {len(d): d}, '无金流有记录', {len(c): c})
+for x, y in GAMETYPELIST.items():
+    print('\n', '------------------------')
+    print('\n', y)
+    gold = DATA(int(x))
+    li, lis = main(x, STARTTIME, ENDTIME)
+    d = [j for j in gold if j not in lis]
+    c = [o for o in lis if o not in gold]
+    print(f'纯后台核对有金流无记录', {len(d): d}, '无金流有记录', {len(c): c})

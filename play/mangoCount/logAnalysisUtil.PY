@@ -78,7 +78,7 @@ class Record():
         self.endTime = endTime
         self.sessions = requests.session()
 
-    def getToken(self, loginUrl = 'http://192.168.10.211:8082/login'):
+    def getToken(self, loginUrl = 'http://192.168.10.211:8080/login'):
         username = self.username
         password = self.password
         loginUrl = loginUrl
@@ -105,7 +105,7 @@ class Record():
             "dateMax": self.endTime
         }
         data = json.dumps(data)
-        url = "http://192.168.10.211:8082/gameRecord/getList"
+        url = "http://192.168.10.211:8080/gameRecord/getList"
         response = sessions.post(url=url, headers=headers, data=data)
         response = response.json()
         return response
@@ -123,7 +123,7 @@ class Record():
             "dateMax": self.endTime ,
             "page": 1, "limit": "", "cid": "", "gid": "", "style": "", }
         data = json.dumps(data)
-        url = "http://192.168.10.211:8082/report/findGameReport"
+        url = "http://192.168.10.211:8080/report/findGameReport"
         response = sessions.post(url=url, headers=headers, data=data)
         response = response.json()
         return response
@@ -142,7 +142,7 @@ class Record():
             "dateMax": self.endTime,
             "page": 1, "limit": 300000, "cid": "", "gid": "", "style": "", "roomCfgId": "", "roundId": "", }
         data = json.dumps(data)
-        url = "http://192.168.10.211:8082/gameRecord/findGameRecordList"
+        url = "http://192.168.10.211:8080/gameRecord/findGameRecordList"
         response = sessions.post(url=url, headers=headers, data=data)
         response = response.json()
 

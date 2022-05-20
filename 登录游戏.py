@@ -1,18 +1,20 @@
 import requests, random, string, re, webbrowser, time, json, win32gui
 from play.mangoCount import logAnalysisUtil
+
 # from Hot_key import hotKey
 MSSQL = logAnalysisUtil.MSSQL
 
+
 def login(Url, num):
-    currency = random.randint(1, 2)
+    # currency = random.randint(1, 3)
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Host': LOGINUIR[7:],
         'Origin': 'http://192.168.10.213:9002',
         'Referer': 'http://192.168.10.213:9002',
     }
-    # userName = '我爱我家我爱我家'
-    userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
+    # userName = '我爱我家我一个人哎'
+    userName = 'RMBliu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
     payload = dict(userName=userName, password='111111', currency=1, style=style, nickName='', sex=0)
     response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
     location = response.headers['location']
@@ -26,6 +28,7 @@ def login(Url, num):
         return login(LOGINUIR, Type)
     return uid, location1, userName
 
+
 def get_handles_id(title):
     '''
     根据标题找句柄
@@ -34,9 +37,11 @@ def get_handles_id(title):
     '''
     jh = []
     hwnd_title = dict()
+
     def get_all_hwnd(hwnd, mouse):
         if win32gui.IsWindow(hwnd) and win32gui.IsWindowEnabled(hwnd) and win32gui.IsWindowVisible(hwnd):
             hwnd_title.update({hwnd: win32gui.GetWindowText(hwnd)})
+
     win32gui.EnumWindows(get_all_hwnd, 0)
     for h, t in hwnd_title.items():
         if t != "":
@@ -46,6 +51,7 @@ def get_handles_id(title):
         return []
     else:
         return jh
+
 
 def addGold(tk, money):
     url = 'http://192.168.10.213:9002/api/UserCore/AddPlayerGold'
@@ -91,13 +97,14 @@ def To(tk):
         print(response.text)
 
 
-def updateGold(userName,money):
+def updateGold(userName, money):
     ms = MSSQL(host='192.168.10.199', user='test', pwd='123456', db="OverseasGameV1", port=1433)
     ms.GetConnect()
-    sql = f"UPDATE [dbo].[Game_UserInfo] SET [money] = {money*1000000} WHERE [uid] = (SELECT id FROM dbo.Game_UserInfoBase WHERE userName = '{userName}')"
+    sql = f"UPDATE [dbo].[Game_UserInfo] SET [money] = {money * 1000000} WHERE [uid] = (SELECT id FROM dbo.Game_UserInfoBase WHERE userName = '{userName}')"
     ms.ExecNonQuery(sql)
 
-x = 0
+
+x = 3
 
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
@@ -108,16 +115,16 @@ else:
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
-for i in range(3):
+for i in range(1):
     nick = {}
-    style = "2"
-    Type = 0
-    c = i % 2+1
+    style = "241"
+    Type = 232
+    c = i % 2 + 1
     a, b, userName = login(LOGINUIR, Type)
-    num = 2000
-    # updateGold(userName, num)
-    data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data, 0)
+    num = 100000000
+    updateGold(userName, num)
+    # data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
+    # game.AddGold(data, 0)
     if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
@@ -131,6 +138,3 @@ for i in range(3):
 ##    handle = handles[0]
 ##    nick.update({handle: userName})
 ##    print(nick)
-
-
-
