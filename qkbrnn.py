@@ -87,8 +87,8 @@ def parseThirtyWater():
     gameType = 230
     userName = 'ada'
     pwd = 'ada'
-    startTime = "2022-05-18 00:00:00"
-    endTime = "2022-05-20 23:52:28"
+    startTime = "2022-05-25 18:00:00"
+    endTime = "2022-05-26 23:52:28"
     record = Record(userName,pwd,gameType,startTime,endTime)
     roomRecords = record.organizeRecords()
     count = 0
@@ -104,11 +104,11 @@ def parseThirtyWater():
                 continue
             antes = roomInfo['roomScore']
             hashChain = roomInfo['hashChain']
-
+            hashChain = 'f67f38ed31b1f651088a5bc6eda350f708f16e835831a78cea50b036bb61b2e4'
             cardsAndTyps = roomInfo['cardsAndTyps']
             print(cardsAndTyps)
             selerctHashChain = hashChain[-26:]
-            print('hashChain:',selerctHashChain)
+            print('hashChain:', selerctHashChain)
             bankerCards = []
             tianCards = []
             diCards = []
@@ -152,19 +152,20 @@ def parseThirtyWater():
                     huangCards.append(str(realCardNo))
             if list(cardsAndTyps[0].keys())[0].split(',') != bankerCards:
                 print('bankerCards',bankerCards)
-                exit(-1)
+                # exit(-1)
             if list(cardsAndTyps[1].keys())[0].split(',') != tianCards:
                 print('tianCards', tianCards)
-                exit(-1)
+                # exit(-1)
             if list(cardsAndTyps[2].keys())[0].split(',') != diCards:
                 print('diCards', diCards)
-                exit(-1)
+                # exit(-1)
             if list(cardsAndTyps[3].keys())[0].split(',') != xuanCards:
                 print('xuanCards', xuanCards)
-                exit(-1)
+                # exit(-1)
             if list(cardsAndTyps[4].keys())[0].split(',') != huangCards:
                 print('huangCards', huangCards)
                 exit(-1)
+
 
 if __name__ == '__main__':
     parseThirtyWater()

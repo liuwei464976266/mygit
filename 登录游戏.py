@@ -14,8 +14,8 @@ def login(Url, num):
         'Referer': 'http://192.168.10.213:9002',
     }
     # userName = '我爱我家我一个人哎'
-    userName = 'RMBliu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
-    payload = dict(userName=userName, password='111111', currency=1, style=style, nickName='', sex=0)
+    userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
+    payload = dict(userName=userName, password='111111', currency=2, style=style, nickName='', sex=0)
     response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
     location = response.headers['location']
     location1 = location.replace(f'h/0', f'h/{num}')
@@ -104,7 +104,7 @@ def updateGold(userName, money):
     ms.ExecNonQuery(sql)
 
 
-x = 3
+x = 0
 
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
@@ -117,14 +117,14 @@ game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
 for i in range(1):
     nick = {}
-    style = "241"
-    Type = 232
+    style = "1"
+    Type = 0
     c = i % 2 + 1
     a, b, userName = login(LOGINUIR, Type)
-    num = 100000000
-    updateGold(userName, num)
-    # data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
-    # game.AddGold(data, 0)
+    num = 10000
+    # updateGold(userName, num)
+    data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
+    game.AddGold(data, 0)
     if Type == 46:
         webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
     else:
@@ -138,3 +138,4 @@ for i in range(1):
 ##    handle = handles[0]
 ##    nick.update({handle: userName})
 ##    print(nick)
+
