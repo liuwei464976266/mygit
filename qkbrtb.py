@@ -34,8 +34,8 @@ def parseThirtyWater():
     gameType = 234
     userName = 'ada'
     pwd = 'ada'
-    startTime = "2022-05-25 18:00:00"
-    endTime = "2022-05-26 23:52:28"
+    startTime = "2022-05-28 18:00:00"
+    endTime = "2022-05-31 23:52:28"
     record = Record(userName, pwd, gameType, startTime, endTime)
     roomRecords = record.organizeRecords()
     count = 0

@@ -5,7 +5,7 @@ from play.mangoCount import logAnalysisUtil
 MSSQL = logAnalysisUtil.MSSQL
 
 
-def login(Url, num):
+def login(Url, num, currency):
     # currency = random.randint(1, 3)
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -13,9 +13,9 @@ def login(Url, num):
         'Origin': 'http://192.168.10.213:9002',
         'Referer': 'http://192.168.10.213:9002',
     }
-    # userName = '我爱我家我一个人哎'
+    # userName = 'mei110'
     userName = 'liu' + (''.join(random.sample(string.digits, 3))) + (''.join(random.sample(string.ascii_letters, 3)))
-    payload = dict(userName=userName, password='111111', currency=2, style=style, nickName='', sex=0)
+    payload = dict(userName=userName, password='111111', currency=currency, style=style, nickName='', sex=0)
     response = requests.post(Url + "/user/register", headers=headers, data=payload, allow_redirects=False)
     location = response.headers['location']
     location1 = location.replace(f'h/0', f'h/{num}')
@@ -25,7 +25,7 @@ def login(Url, num):
         print(userName, uid)
     else:
         print('账号失败', userName, location1)
-        return login(LOGINUIR, Type)
+        return login(LOGINUIR, Type, currency)
     return uid, location1, userName
 
 
@@ -104,32 +104,33 @@ def updateGold(userName, money):
     ms.ExecNonQuery(sql)
 
 
-x = 0
+x = 3
 
 if x == 0:
     LOGINUIR = "http://18.167.1.28:8031"
 elif x == 5:
-    LOGINUIR = f"http://192.168.10.25:9002"
+    LOGINUIR = f"http://18.167.1.28:8068"
 else:
-    LOGINUIR = f"http://192.168.10.21{x}:9002"
+    LOGINUIR = f"http://192.168.10.21{x}:9001"
 
 game = logAnalysisUtil.Record('admin', '123456', '', '', '')
 
 for i in range(1):
     nick = {}
-    style = "1"
+    style = "241"
     Type = 0
-    c = i % 2 + 1
-    a, b, userName = login(LOGINUIR, Type)
-    num = 10000
-    # updateGold(userName, num)
-    data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
-    game.AddGold(data, 0)
+    currency = 2
+    # currency = i % 3 + 1
+    a, b, userName = login(LOGINUIR, Type, currency)
+    num = 1000
+    updateGold(userName, num)
+    # data = dict(userName=userName, style=style, num=str(num), moneyType="1", actionType="3")  ## actionType="3"是加钱
+    # game.AddGold(data, 0)
     if Type == 46:
-        webbrowser.open("http://192.168.10.88:5618/index.html?uid=" + a, 1)
+        webbrowser.open("http://192.168.10.88:5612/index.html?uid=" + a, 1)
     else:
         webbrowser.open(b, 1)
-    time.sleep(1)
+    time.sleep(3)
 ##    handles = []
 ##    handles += get_handles_id("MG Asia - Google Chrome")
 ##    handles += get_handles_id("Egret - Google Chrome")

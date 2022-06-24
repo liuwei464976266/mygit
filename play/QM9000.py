@@ -1013,10 +1013,10 @@ def getToken(username, password):
 
 def main():  # 主函数 程序入口
     gold1 = 0
-    tokenid, username = register()
+    # tokenid, username = register()
     # print("this",username,password)
     # tk = java_login(username, password)
-    # tokenid = tk
+    tokenid = "19BA9F50C1CE25873800911FF3A2F5118DAE"
     gameType = GT
     call(tokenid, gameType)
     gold2 = 0

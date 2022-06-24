@@ -13,7 +13,7 @@ class JSONEncoder(json.JSONEncoder):
 
 GAMETYPELIST = {
     # 2: "抢庄牛牛",
-
+    43: "新版斗牛",
     30: "炸金花",
     31: "推筒子",
     32: "三公",
@@ -24,7 +24,7 @@ GAMETYPELIST = {
     38: "二十一点",
     39: "十三水",
     41: "德州扑克",
-    43: "新版斗牛",
+
     45: "欢乐炸金花",
     46: "港式梭哈",
     47: "红黑大战",
@@ -160,7 +160,7 @@ def Mangodb1(STARTTIME, endtime):  # 验证新版斗牛抢庄
     for i in mydoc:
         x += 1
         # i = JSONEncoder().encode(i)
-        # print(x, JSONEncoder().encode(i))
+        print(x, JSONEncoder().encode(i))
         settlements = i['settlements']
         userlist = i['userlist']
         permission = i['permission']
@@ -328,8 +328,8 @@ def main(game, startime, endtime):
     return li, lis
 
 
-STARTTIME = "2022-05-19 00:00:00"
-ENDTIME = "2022-05-19 23:59:59"
+STARTTIME = "2022-06-08 13:00:00"
+ENDTIME = "2022-06-08 15:20:59"
 
 
 # Mangodb1(STARTTIME, ENDTIME)

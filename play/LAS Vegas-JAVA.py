@@ -13,11 +13,12 @@ session = requests.session()
 GT = 144
 BET = 30
 pattern = 1
-LOGINUIR = "http://192.168.10.212:9002/user/register"
-INITURL = 'http://192.168.10.212:9008/callInitialize'
-SLOTURL = 'http://192.168.10.212:9008/getSlotData'
-REGISTERURL = 'http://192.168.10.212:9000/registerUser'
-exchange = 'http://192.168.10.212:9002/api/Service/ExchangeInOrOut'
+LOGINUIR = "http://192.168.10.213:9002/user/register"
+INITURL = 'http://192.168.10.213:9008/callInitialize'
+SLOTURL = 'http://192.168.10.213:9008/getSlotData'
+REGISTERURL = 'http://192.168.10.213:9000/registerUser'
+exchange = 'http://192.168.10.213:9002/api/Service/ExchangeInOrOut'
+
 PLAY_BOY_AWARD = {
     (11, 1): 0,
     (11, 2): 1,
@@ -102,8 +103,11 @@ def filterAdpoints(adpoints, points):  # 自己计算adpoints
         else:
             myDicAdpoints['11'] = value
     print("过滤后返回adpoints", myDicAdpoints)
+    if myDicAdpoints.get("5") is not None:
+        if len(myDicAdpoints.get("5")) > 2:
+            print("中奖3A")
+            exit()
     return myDicAdpoints
-
 
 def getColsSymbol(points):  # 取出各列中奖位置
     symbol13_list = []
@@ -901,8 +905,8 @@ def Exchange(tk, gt, type, location):
 def main():  # 主函数 程序入口
     # tokenid, username = register()
     gameType = GT
-    # tokenid = '4A8434D218D1CF6E2C2A01ECB082BD2333E9'
-    tokenid, location = login(LOGINUIR)
+    tokenid = '72A2C2A6A618EF979174C7632011CFD219EE'
+    # tokenid, location = login(LOGINUIR)
     # gold, money = Exchange(tokenid, 130, 1, location)
     # print(gold, money)
     betScore = BET
@@ -1077,8 +1081,8 @@ def main():  # 主函数 程序入口
 
 
 if __name__ == '__main__':
-    # main()
-    for i in range(1):
-        threading.Thread(target=main).start()
-        time.sleep(2)
+    main()
+    # for i in range(1):
+    #     threading.Thread(target=main).start()
+    #     time.sleep(2)
 

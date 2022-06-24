@@ -1090,11 +1090,9 @@ def main():  # 主函数 程序入口
     xyx = 0
     hl = 0
     gold1 = 0
-    # tokenid, username = register()
     gameType = GT
-    # tokenid = '7D409574415907CDBE70DFF1D1878882999A'
-    tokenid, location = login(LOGINUIR)
-    requests.get(f'http://192.168.10.212:8080/user/pay?uid={tokenid}&gold=100000000000')
+    tokenid = '2022964D479CC0DC8728D1FF09B9B8542554'
+    # tokenid, location = login(LOGINUIR)
     call(tokenid, gameType)
     gold2 = 0
     while True:
@@ -1180,6 +1178,8 @@ def main():  # 主函数 程序入口
                     fsTimes = response['et']['data']['residue']
                 elif response['et']['data']['isFree'] == True:
                     hl += 1
+                    print("进入红利")
+                    return
                     print(f'当前小游戏次数{xyx}||||当前红利次数{hl}')
                     fsTimes = 13
                 playedTimes = 1
@@ -1240,7 +1240,8 @@ def main():  # 主函数 程序入口
 
 
 if __name__ == '__main__':
-    for i in range(1):
-        threading.Thread(target=main).start()
-        time.sleep(5)
+    # for i in range(1):
+    #     threading.Thread(target=main).start()
+    #     time.sleep(5)
+    main()
 

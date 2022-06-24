@@ -5,6 +5,7 @@ import jpype,configparser
 base_dir = os.path.dirname(__file__)
 config_path = os.path.join(base_dir, 'login.config')
 login_configFile_path = config_path
+TIMEZONEdeviation = -8
 # login_configFile_path = 'login.config'
 def loadConfig():
     cf = configparser.ConfigParser()
@@ -50,14 +51,12 @@ class MSSQL:
         cur = self.GetConnect()
         cur.execute(sql)
         resList = cur.fetchall()
-        self.conn.close()
         return resList
 
     def ExecNonQuery(self, sql):
         cur = self.GetConnect()
         cur.execute(sql)
         self.conn.commit()
-        self.conn.close()
 
     def GetData(self, sql):
         count = 0
@@ -72,7 +71,7 @@ class MSSQL:
                     print('\n')
 def init_sqlSever():
     ms = MSSQL(host=SQLSEVER_HOST, user=USER_NAME, pwd=PWD, db=SQLSEVER_DB, port=SQLSEVER_PORT)
-    ms.GetConnect
+    ms.GetConnect()
     return ms
 ms = init_sqlSever()
 class Record():
@@ -122,7 +121,6 @@ class Record():
         }
         data = json.dumps(data)
         response = requests.post(url=url, headers=headers, data=data)
-        print(response.text)
         return response.text
 class Des_util():
     def __init__(self):
@@ -194,9 +192,9 @@ def getBlackUserList():
     black_List = [x[0] for x in ms.ExecQuery(sql)]
     return black_List
 def timeQueryMangodb(_startTime,_endTime,black_List):
-    _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     _startTime = datetime.datetime.strftime(_startTime, "%Y-%m-%d %H:%M:%S")
-    _endTime = datetime.datetime.strptime(_endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    _endTime = datetime.datetime.strptime(_endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     _endTime = datetime.datetime.strftime(_endTime, "%Y-%m-%d %H:%M:%S")
     startTimeArray = time.strptime(_startTime, "%Y-%m-%d %H:%M:%S")
     endTimeArray = time.strptime(_endTime, "%Y-%m-%d %H:%M:%S")
@@ -240,9 +238,9 @@ def timeQueryMangodb(_startTime,_endTime,black_List):
             mon += 1
     return docList
 def timeQueryMangodbLog(_startTime,_endTime,game_type = None):
-    # _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    # _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     # _startTime = datetime.datetime.strftime(_startTime, "%Y-%m-%d %H:%M:%S")
-    # _endTime = datetime.datetime.strptime(_endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    # _endTime = datetime.datetime.strptime(_endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     # _endTime = datetime.datetime.strftime(_endTime, "%Y-%m-%d %H:%M:%S")
     startTimeArray = time.strptime(_startTime, "%Y-%m-%d %H:%M:%S")
     endTimeArray = time.strptime(_endTime, "%Y-%m-%d %H:%M:%S")
@@ -269,7 +267,7 @@ def timeQueryMangodbLog(_startTime,_endTime,game_type = None):
                 monthFirstTime = datetime.datetime(year=endTimeArray.tm_year,month=mon,day=1,hour=0,minute=0,second=0)
                 startTime = datetime.datetime.strftime(monthFirstTime,"%Y-%m-%d %H:%M:%S")
                 endTime = _endTime
-                doc = get_mangodb_data(startTime, endTime,game_type)
+                doc = get_mangodb_data_by_gameType(startTime, endTime,game_type)
                 for x in doc:
                     docList.append(x)
             else:
@@ -349,8 +347,8 @@ def get_mangodb_data(startTime,endTime):
         print('start:', en_name)
         if gold_type == 2:
             mycol = mydb["LotteryRecordModel"]
-            startDateTime = datetime.datetime.strptime(startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
-            endDateTime = datetime.datetime.strptime(endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+            startDateTime = datetime.datetime.strptime(startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
+            endDateTime = datetime.datetime.strptime(endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
             myquery = {"createDate": {"$gt": startDateTime, '$lte': endDateTime}}
             if query_small_game_flag == False:
                 mydoc = mycol.find(myquery)
@@ -375,9 +373,9 @@ def get_id_by_userName(userName):
     id = ms.ExecQuery(sql)[0][0]
     return id
 def timeQueryMangodbByGameType(_startTime,_endTime,black_List,gameType=None):
-    _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    _startTime = datetime.datetime.strptime(_startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     _startTime = datetime.datetime.strftime(_startTime, "%Y-%m-%d %H:%M:%S")
-    _endTime = datetime.datetime.strptime(_endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    _endTime = datetime.datetime.strptime(_endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     _endTime = datetime.datetime.strftime(_endTime, "%Y-%m-%d %H:%M:%S")
     startTimeArray = time.strptime(_startTime, "%Y-%m-%d %H:%M:%S")
     endTimeArray = time.strptime(_endTime, "%Y-%m-%d %H:%M:%S")
@@ -436,8 +434,8 @@ def queryMangodbByGameType(startTime,endTime,black_List,noneStartTime = False,no
     mydoc = mycol.find(myquery)
     return mydoc
 def getGameUserCountUsersCount(startTime,endTime,black_List,*conditions):
-    startDateTime = datetime.datetime.strptime(startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
-    endDateTime = datetime.datetime.strptime(endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=-8)
+    startDateTime = datetime.datetime.strptime(startTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
+    endDateTime = datetime.datetime.strptime(endTime, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=TIMEZONEdeviation)
     myclient = pymongo.MongoClient(MANGODB_INFO)
     mydb = myclient[MANGODB_VER]
     monthDate = endTime[0:7]
@@ -460,11 +458,50 @@ def get_user_gold_by_userName(userName):
     money = ms.ExecQuery(sql)[0][0] / 1000000
     return money
 def get_userName_max_by_userName_like(userName_like):
-    sql = f"select top 1 userName from Game_UserInfoBase where userName LIKE '{userName_like}' order by userName DESC "
+    sql = f"select top 1 userName from Game_UserInfoBase where userName LIKE '{userName_like}' order by len(userName) DESC,userName DESC "
     userName_max = ms.ExecQuery(sql)
     if len(userName_max) > 0:
         return userName_max[0][0]
     else:
         return userName_like.replace('%','1000')
+def changeUserGold(userName,gold):
+    if not userName.endswith("'"):
+        userName = f"'{userName}'"
+    gold = float(gold) * 1000000
+    gold = str(int(gold))
+    sql = f"update Game_UserInfo set money = {gold} from Game_UserInfo where uid = (select id from Game_UserInfoBase where userName = {userName})"
+    try:
+        ms.ExecNonQuery(sql)
+        return "success"
+    except:
+        return "faild"
+def get_game_info(goldType = None):
+    result = {}
+    if goldType:
+        sql = f"SELECT gameType,gameName FROM Game_Type where goldType = {goldType}"
+    else:
+        sql = f"SELECT gameType,gameName FROM Game_Type"
+    data = ms.ExecQuery(sql)
+    for gameType,gameName in data:
+        gameName = gameName.encode('latin1').decode('gbk')
+        result[gameType] = gameName
+    return result
+def get_HashChain(table_name,roomConfigId,limit):
+    myclient = pymongo.MongoClient(MANGODB_INFO)
+    mydb = myclient[MANGODB_VER]
+    mycol = mydb[table_name]
+    myquery = {"roomConfigId":roomConfigId}
+    mydoc = mycol.find(myquery).sort([("orderTime",-1)]).limit(limit)
+    return mydoc
+
+
+if __name__ == '__main__':
+    table_name = "HashChain_232_2022-06"
+    roomConfigId = 271
+    limit = 20
+    get_HashChain(table_name,roomConfigId,limit)
+
+
+
 
 

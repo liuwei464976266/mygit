@@ -52,7 +52,8 @@ def getHs(point):
 
 
 def random_hex(length):
-    result = hex(random.randint(0, 16**length)).replace('0x','').upper()
+    result = hex(random.randint(0, 16**length)).replace('0x', '').upper()
+    print(result)
     if(len(result)<length):
             result ='0'*(length-len(result))+result
     return result
@@ -85,11 +86,6 @@ def main():
         gold += numdoc[x]*goldPoint[x]-initGold
         print(numdoc, gold1)
     print(gold)
-
-
-
-
-
 
 
 if __name__ == '__main__':

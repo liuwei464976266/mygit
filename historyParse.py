@@ -9,8 +9,19 @@ from decimal import Decimal
 from dateutil.parser import *
 import pymssql
 from logAnalysisUtil import *
-GAMETYPELIST =  {"34": "百人牛牛",
+GAMETYPELIST = {"34": "百人牛牛",
  "47": "红黑大战",
+"147": "区块骰宝",
+"148": "区块猜硬币",
+"149": "区块爬塔",
+ "150": "区块叮咚球",
+ "151": "区块基诺球",
+ "152": "区块挖矿弹",
+ "153": "区块西洛",
+ "154": "区块三联爆",
+ "155": "区块暴力弹",
+ "156": "区块轮盘",
+ "2": "斗牛",
  "58": "百人骰宝",
  "125": "不朽情缘",
  "126": "花花公子",
@@ -271,7 +282,7 @@ def gameReport(startTime, endTime):
             if key == 'gameType':
                 gameRecordList = gameRecord.get(value,[])
                 if x.get('userName'):
-                    gameRecordList.append((str(x['roundId']),x['userName'],x['gold']))
+                    gameRecordList.append((str(x['roundId']), x['userName'], x['gold']))
                 else:
                     print(x)
                 gameRecord[value] = gameRecordList
@@ -285,7 +296,7 @@ def gameReport(startTime, endTime):
                     profit = {x['currencyType']: gold}
                     betAmount = {x['currencyType']: x['betAmount']}
                     tax = {x['currencyType']: x['tax']}
-                    sql = f"select t.extendedField1,sum(t.goldNum),count(*) from (select goldNum,extendedField1 from dbo.Game_GameGoldActionInfo where creatDate BETWEEN '{startTime}' AND '{endTime}' and gameType = {value} and actionType in (2,12) UNION all select goldNum,currencyType from dbo.Game_GoldActionInfo where creatDate BETWEEN '{startTime}' AND '{endTime}' and gameType = {value} and actionType in (2,12)) as t GROUP BY t.extendedField1"
+                    sql = f"select t.extendedField2,sum(t.goldNum),count(*) from (select goldNum,extendedField2 from dbo.Game_GameGoldActionInfo where creatDate BETWEEN '{startTime}' AND '{endTime}' and gameType = {value} and actionType in (2,12) UNION all select goldNum,currencyType from dbo.Game_GoldActionInfo where creatDate BETWEEN '{startTime}' AND '{endTime}' and gameType = {value} and actionType in (2,12)) as t GROUP BY t.extendedField2"
                     goldNum = ms.ExecQuery(sql)
                     gameType = value
                     conditions = {"gameType":{"$eq": gameType}}
@@ -406,12 +417,14 @@ def compareDict(dict1,dict2):
             print(round(dict1.get(str(i),0) * 100),dict2.get(int(i),0))
             return False
     return True
+
+
 if __name__ == '__main__':
     ms = init_sqlSever()
     session = init_requests()
     checkBackstage = False
-    startTime = "2022-05-23 18:00:00"
-    endTime = "2022-05-24 09:59:00"
+    startTime = "2022-06-22 20:30:00"
+    endTime = "2022-06-23 09:20:00"
     getGlobalData()
     mydoc = timeQueryMangodb(startTime, endTime, black_List)
     token = loginBackStage(session)
