@@ -10,7 +10,7 @@
 /game/updateAllGameState {'timestamp': '2022-01-12T09:42:58.169+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateAllGameState'}
 /game/updateCompanyGameState {'timestamp': '2022-01-12T09:43:03.488+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateCompanyGameState'}
 /game/updateGame {'timestamp': '2022-01-12T09:43:08.870+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGame'}
-/game/updateGameHot {'timestamp': '2022-01-12T09:43:13.925+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGameHot'}
+/game/updateGameHot {'timestamp': '2022-01-12T09:43:13.925+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'ath': '/game/updateGameHot'}
 /game/updateGameSort {'timestamp': '2022-01-12T09:43:18.854+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGameSort'}
 /game/updateGeneralGameState {'timestamp': '2022-01-12T09:43:24.330+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateGeneralGameState'}
 /game/updateStyleGameState {'timestamp': '2022-01-12T09:43:29.712+00:00', 'status': 400, 'error': 'Bad Request', 'message': '', 'path': '/game/updateStyleGameState'}

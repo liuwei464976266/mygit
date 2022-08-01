@@ -46,7 +46,6 @@ class MSSQL:
         cur = self.GetConnect()
         cur.execute(sql)
         resList = cur.fetchall()
-
         self.conn.close()
         return resList
 
