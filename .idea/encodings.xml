@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/Mysql/mysql_connect.py" charset="GBK" />
     <file url="file://$PROJECT_DIR$/play/.editorconfig" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/JAVA胜率.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/play/LAS Vegas-JAVA.py" charset="UTF-8" />

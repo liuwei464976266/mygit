@@ -5,23 +5,23 @@ import SeleniumLibrary
 
 # driver = webdriver.Chrome()
 # driver.get('https://www.baidu.com/')
-# driver.find_element(By.ID, 'kw').send_keys('è™šç«¹')
+# driver.find_element(By.ID, 'kw').send_keys('ĞéÖñ')
 # driver.find_element(By.XPATH, '//*[@id="su"]').click()
 
 
 
-# æ‰“å¼€æµè§ˆå™¨é©±åŠ¨
+# ´ò¿ªä¯ÀÀÆ÷Çı¶¯
 driver = webdriver.Chrome()
 driver.implicitly_wait(10)
 
 
 class ServiceConfig():
-    # å®šä¹‰prepareWorkå‡½æ•°ï¼Œåšå‡†å¤‡å·¥ä½œ
+    # ¶¨ÒåprepareWorkº¯Êı£¬×ö×¼±¸¹¤×÷
     def prepareWork(self, url):
         driver.get(url)
 
     def click(self):
-        driver.find_element(By.ID, 'kw').send_keys('è™šç«¹')
+        driver.find_element(By.ID, 'kw').send_keys('ĞéÖñ')
         driver.find_element(By.XPATH, '//*[@id="su"]').click()
 
 
